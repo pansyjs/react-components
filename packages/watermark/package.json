@@ -1,0 +1,17 @@
+{
+  "name": "@pansy/react-watermark",
+  "version": "1.2.0",
+  "description": "React watermark component.",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "es",
+    "lib"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  }
+}
