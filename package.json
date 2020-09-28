@@ -7,9 +7,12 @@
   "scripts": {
     "start": "dumi dev",
     "build": "father-build",
-    "site": "dumi build"
+    "site": "dumi build",
+    "commit": "npx cz"
   },
   "devDependencies": {
+    "commitizen": "^4.2.1",
+    "cz-conventional-changelog": "^3.3.0",
     "dumi": "^1.0.34",
     "father-build": "^1.18.5",
     "lerna": "^3.22.1",
