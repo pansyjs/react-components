@@ -1,0 +1,25 @@
+{
+  "name": "@pansy/react-components",
+  "repository": "git@github.com:pansyjs/react-components.git",
+  "author": "wangxingkang <156148958@qq.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "dumi dev",
+    "build": "father-build",
+    "site": "dumi build"
+  },
+  "devDependencies": {
+    "dumi": "^1.0.34",
+    "father-build": "^1.18.5",
+    "lerna": "^3.22.1",
+    "typescript": "^4.0.3"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  }
+}
