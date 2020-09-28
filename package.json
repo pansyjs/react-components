@@ -18,6 +18,11 @@
     "lerna": "^3.22.1",
     "typescript": "^4.0.3"
   },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
   "workspaces": [
     "packages/*"
   ]
