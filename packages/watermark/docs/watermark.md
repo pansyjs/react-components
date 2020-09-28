@@ -1,8 +1,9 @@
 ---
-title: Watermark - 水印
+title: Watermark 水印
 nav:
   title: 组件
   path: /components
+order: 1
 group:
   path: /
 ---
