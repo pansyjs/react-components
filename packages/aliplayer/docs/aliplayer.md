@@ -3,9 +3,10 @@ title: AliPlayer 阿里播放器
 nav:
   title: 组件
   path: /components
-order: 10
+order: 2
 group:
-  path: /
+  path: /video
+  title: '音视频组件'
 ---
 
 # AliPlayer 阿里播放器
