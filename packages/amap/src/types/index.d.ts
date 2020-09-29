@@ -86,4 +86,11 @@ declare namespace AMap {
     onOpen: Event<'open', { target: I }>;
     onClose: Event<'close', { target: I }>;
   }
+
+  export interface AutoCompleteEventMap {
+    onComplete: Event<'complete', SearchResult | { info: string }>;
+    onError: Event<'error', { info: string }>;
+    onSelect: Event<'select', { tip: Tip }>;
+    onChoose: Event<'choose', { tip: Tip }>;
+  }
 }

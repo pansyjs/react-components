@@ -1,19 +1,18 @@
 ---
-title: Map 地图组件
+title: AutoComplete 搜索提示
 nav:
   title: 组件
   path: /components
-order: 3
 group:
   path: /amap
   title: '高德地图'
-  order: 1
+  order: 5
 ---
 
-# Map 地图组件
+## AutoComplete 搜索提示
 
 ## 代码示例
 
 ### 简单使用
 
-<code src="../demos/demo-01.tsx" />
+<code src="../demos/demo-04.tsx" />
