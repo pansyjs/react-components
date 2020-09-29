@@ -80,4 +80,10 @@ declare namespace AMap {
     onTouchMove: MapsEvent<'touchmove', I>;
     onTouchEnd: MapsEvent<'touchend', I>;
   }
+
+  export interface InfoWindowEventMap<I = any> {
+    onChange: Event<'change', { target: I }>;
+    onOpen: Event<'open', { target: I }>;
+    onClose: Event<'close', { target: I }>;
+  }
 }

@@ -1,6 +1,5 @@
 import React, { useImperativeHandle } from 'react';
 import useMarker from './use-marker';
-import {}  from '../';
 
 export interface MarkerProps extends
   AMap.MapChildProps,

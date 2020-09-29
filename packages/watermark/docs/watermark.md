@@ -5,7 +5,9 @@ nav:
   path: /components
 order: 1
 group:
-  path: /
+  path: /basic
+  title: '基础组件'
+  order: 2
 ---
 
 # Watermark - 水印
