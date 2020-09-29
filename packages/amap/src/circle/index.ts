@@ -1,9 +1,9 @@
 import InternalCircle from './circle';
 import useCircle from './use-circle';
 
-type InternalAutoCompleteType = typeof InternalCircle;
+type InternalCircleType = typeof InternalCircle;
 
-interface CircleInterface extends InternalAutoCompleteType {
+interface CircleInterface extends InternalCircleType {
   useCircle: typeof useCircle;
 }
 
