@@ -16,3 +16,6 @@ group:
 
 <code src="../demos/demo-01.tsx" />
 
+### Marker 点标记组件
+
+<code src="../demos/demo-02.tsx" />

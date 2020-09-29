@@ -2,15 +2,21 @@
 
 import React, { useEffect, useRef, useImperativeHandle } from 'react';
 import useMap from './use-map';
+import APILoader from '../api-loader';
+import { Options } from '../api-loader/use-api-loader';
 
-export interface MapProps extends Partial<AMap.Map.Options>, Partial<AMap.Map.EventMap> {
+export interface InternalMapProps extends Partial<AMap.Map.Options>, Partial<AMap.Map.EventMap> {
   className?: string;
   style?: React.CSSProperties;
+}
+
+export interface MapProps extends InternalMapProps {
+  options?: Options;
   loading?: React.ReactNode;
 }
 
-const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, MapProps> = (props, ref) => {
-  const { className, style, children, loading, ...rest } = props;
+const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, InternalMapProps> = (props, ref) => {
+  const { className, style, children, ...rest } = props;
   const rootRef = useRef<HTMLDivElement>(null);
   const { map, setContainer } = useMap({
     container: rootRef.current as HTMLDivElement,
@@ -40,6 +46,7 @@ const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, MapProps> =
         if (!React.isValidElement(child)) return;
         return React.cloneElement(child, {
           ...child.props,
+          AMap,
           map
         });
       })}
@@ -47,4 +54,16 @@ const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, MapProps> =
   )
 }
 
-export default React.forwardRef(InternalMap);
+const ForwardRefInternalMap = React.forwardRef(InternalMap);
+
+const Map: React.FC<MapProps> = (props) => {
+  const { options = {}, loading, ...rest } = props;
+
+  return (
+    <APILoader {...options} loading={loading}>
+      <ForwardRefInternalMap {...rest} />
+    </APILoader>
+  )
+}
+
+export default Map;

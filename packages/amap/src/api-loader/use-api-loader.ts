@@ -72,7 +72,7 @@ const useApiLoader = (opts: Options) => {
 
       window[callback] = () => {
         setLoaded(true);
-        delete window[callback]
+        // delete window[callback];
       }
 
       return true;

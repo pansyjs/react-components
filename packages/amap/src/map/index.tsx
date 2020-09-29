@@ -1,20 +1,14 @@
-import React from 'react';
-import APILoader from '../api-loader';
-import { Options } from '../api-loader/use-api-loader';
-import Map, { MapProps } from './map';
-export interface InternalMapProps extends MapProps {
-  options?: Options;
-  loading?: React.ReactNode;
+import InternalMap from './map';
+import useMap from './use-map';
+
+type InternalMapType = typeof InternalMap;
+
+interface MapInterface extends InternalMapType {
+  useMap: typeof useMap;
 }
 
-const InternalMap: React.FC<InternalMapProps> = (props) => {
-  const { options = {}, loading, ...rest } = props;
+const Map = InternalMap as MapInterface;
 
-  return (
-    <APILoader {...options} loading={loading}>
-      <Map {...rest} />
-    </APILoader>
-  )
-}
+Map.useMap = useMap;
 
-export default InternalMap;
+export default Map;
