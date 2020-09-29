@@ -11,6 +11,4 @@ const AutoComplete = InternalAutoComplete as MarkerInterface;
 
 AutoComplete.useAutoComplete = useAutoComplete;
 
-AutoComplete.displayName = 'AMap'
-
 export default AutoComplete;

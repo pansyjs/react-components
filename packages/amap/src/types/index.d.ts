@@ -5,6 +5,7 @@
 /// <reference types="amap-js-api-overview" />
 /// <reference types="amap-js-api-control-bar" />
 /// <reference types="amap-js-api-heatmap" />
+/// <reference types="./circle-marker" />
 
 declare global {
   interface Window {
