@@ -93,4 +93,9 @@ declare namespace AMap {
     onSelect: Event<'select', { tip: Tip }>;
     onChoose: Event<'choose', { tip: Tip }>;
   }
+
+  export interface EventMap<I = Circle> extends ShapeOverlay.EventMap<I> {
+    setCenter: Event<'setCenter'>;
+    setRadius: Event<'setRadius'>;
+  }
 }
