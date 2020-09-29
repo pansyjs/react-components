@@ -14,14 +14,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@types/amap-js-api": "1.4.8",
-    "@types/amap-js-api-autocomplete": "1.4.0",
-    "@types/amap-js-api-city-search": "1.4.0",
-    "@types/amap-js-api-control-bar": "1.4.0",
-    "@types/amap-js-api-heatmap": "1.4.1",
-    "@types/amap-js-api-map-type": "1.4.0",
-    "@types/amap-js-api-overview": "1.4.0",
-    "@types/amap-js-api-scale": "1.4.1",
-    "@types/amap-js-api-tool-bar": "1.4.0"
+    "@pansy/amap-types": "^1.0.0"
   }
 }
