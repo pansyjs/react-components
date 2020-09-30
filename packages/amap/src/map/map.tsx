@@ -1,14 +1,17 @@
-/// <reference types="amap-js-api" />
-
 import React, { useEffect, useRef, useImperativeHandle } from 'react';
 import useMap from './use-map';
 import APILoader from '../api-loader';
 import { Options } from '../api-loader/use-api-loader';
 
-export interface InternalMapProps extends Partial<AMap.Map.Options>, Partial<AMap.Map.EventMap> {
-  className?: string;
-  style?: React.CSSProperties;
-}
+export type MapOptions = AMap.Map.Options;
+
+export interface InternalMapProps extends
+  Partial<MapOptions>,
+  Partial<AMap.MapEventMap> {
+    className?: string;
+    style?: React.CSSProperties;
+    center?: AMap.LocationValue;
+  }
 
 export interface MapProps extends InternalMapProps {
   options?: Options;
@@ -33,24 +36,42 @@ const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, InternalMap
     [rootRef.current]
   );
 
-  const childs = React.Children.toArray(children);
-
-  return (
-    <div
-      ref={rootRef}
-      className={className}
-      style={{ fontSize: 1, height: '100%', ...style}}
-    >
-      {(map && typeof children === 'function')&& children({ map })}
-      {map && childs.map((child) => {
-        if (!React.isValidElement(child)) return;
+  const renderChildren = () => {
+    return React.Children.map(children, (child) => {
+      if (child && React.isValidElement(child)) {
+        const type = child.type;
+        /*
+         * 针对下面两种组件不注入地图相关属性
+         * 1. 明确声明不需要注入的
+         * 2. DOM 元素
+         */
+        if (type['preventAmap'] || (typeof type === 'string')) {
+          return child
+        }
         return React.cloneElement(child, {
           ...child.props,
           AMap,
           map
         });
-      })}
-    </div>
+      }
+      return child
+    })
+  }
+
+  return (
+    <>
+      <div
+        ref={rootRef}
+        className={className}
+        style={{ fontSize: 1, height: '100%', ...style}}
+      />
+      {map && (
+        <>
+         {typeof children === 'function' && children({ map, AMap })}
+         {renderChildren()}
+        </>
+      )}
+    </>
   )
 }
 

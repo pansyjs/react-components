@@ -1,13 +1,13 @@
 import InternalInfoWindow from './info-window';
 import useInfoWindow from './use-info-window';
 
-type InternalMarkerType = typeof InternalInfoWindow;
+type InternalInfoWindowType = typeof InternalInfoWindow;
 
-interface MarkerInterface extends InternalMarkerType {
+interface InfoWindowInterface extends InternalInfoWindowType {
   useInfoWindow: typeof useInfoWindow;
 }
 
-const InfoWindow = InternalInfoWindow as MarkerInterface;
+const InfoWindow = InternalInfoWindow as InfoWindowInterface;
 
 InfoWindow.useInfoWindow = useInfoWindow;
 

@@ -23,7 +23,7 @@ export interface WatermarkProps {
   /**
    * 水印配置
    */
-  options?: Options;
+  options?: Partial<Options>;
   /**
    * 样式层级
    */

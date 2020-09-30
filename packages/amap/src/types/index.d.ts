@@ -1,10 +1,6 @@
-/// <reference types="amap-js-api" />
-/// <reference types="amap-js-api-scale" />
-/// <reference types="amap-js-api-tool-bar" />
-/// <reference types="amap-js-api-map-type" />
-/// <reference types="amap-js-api-overview" />
-/// <reference types="amap-js-api-control-bar" />
-/// <reference types="amap-js-api-heatmap" />
+/// <reference types="@pansy/amap-types" />
+/// <reference types="./circle-marker" />
+/// <reference types="./marker-clusterer" />
 
 declare global {
   interface Window {
@@ -27,6 +23,11 @@ declare namespace AMap {
     [number, number] |
     { lng: number; lat: number } |
     { longitude: number, latitude: number };
+
+  export type OffsetType =
+    AMap.Pixel |
+    [number, number] |
+    { x: number, y: number };
 
   export interface MapEventMap {
     onClick: MapsEvent<'click', Map>;
@@ -85,5 +86,17 @@ declare namespace AMap {
     onChange: Event<'change', { target: I }>;
     onOpen: Event<'open', { target: I }>;
     onClose: Event<'close', { target: I }>;
+  }
+
+  export interface AutoCompleteEventMap {
+    onComplete: Event<'complete', SearchResult | { info: string }>;
+    onError: Event<'error', { info: string }>;
+    onSelect: Event<'select', { tip: Tip }>;
+    onChoose: Event<'choose', { tip: Tip }>;
+  }
+
+  export interface EventMap<I = Circle> extends ShapeOverlay.EventMap<I> {
+    setCenter: Event<'setCenter'>;
+    setRadius: Event<'setRadius'>;
   }
 }
