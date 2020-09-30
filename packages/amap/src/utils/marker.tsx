@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import { isFunction, toLnglat, toPixel } from './';
 import { Keys } from '../types/global';
 
-
 type childFun = (extData: any) => React.ReactNode;
 
-export const MarkerConfigurableProps: Keys<AMap.Marker.Options>[] = [
+export const MarkerAllProps: Keys<AMap.Marker.Options>[] = [
   'position',
+  'anchor',
   'offset',
   'icon',
   'content',
@@ -20,22 +20,30 @@ export const MarkerConfigurableProps: Keys<AMap.Marker.Options>[] = [
   'title',
   'clickable',
   'extData',
-  'label'
-];
+  'label',
 
-export const MarkerAllProps = MarkerConfigurableProps.concat([
   'topWhenClick',
   'bubble',
   'raiseOnDrag',
   'cursor',
   'autoRotation',
   'shape'
-]);
+];
 
-export const getPropValue = (key: Keys<AMap.Marker.Options>, value: any) => {
+/**
+ * 获取标记点参数的值
+ * 主要为了position、offset支持更多的数据结构
+ * @param key
+ * @param value
+ */
+export const getPropValue = (
+  key: Keys<AMap.Marker.Options>,
+  value: any
+) => {
   if (MarkerAllProps.indexOf(key) === -1) {
     return null;
   }
+  // 特殊处理 position、offset
   if (key === 'position') {
     return toLnglat(value);
   } else if (key === 'offset') {

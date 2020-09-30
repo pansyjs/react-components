@@ -3,20 +3,47 @@ import { render } from 'react-dom';
 import { isFunction } from '../utils';
 import { MarkerAllProps, getPropValue, renderMarkerComponent } from '../utils/marker';
 
+export interface MarkerOptions extends Omit<AMap.Marker.Options, 'offset'| 'position'> {
+  /**
+   * 标记点偏移量
+   */
+  offset?: AMap.OffsetType;
+  /**
+   * 标记点位置
+   */
+  position?: AMap.PositionType;
+
+  /**
+   * 方便注入其他数据
+   */
+  [key: string]: any;
+}
+
+export interface ClustererOptions extends AMap.MarkerClusterer.Options {
+  /**
+   * 点击事件
+   */
+  onClick?: AMap.MarkerClusterer.EventMap['click'];
+  /**
+   * 创建事件
+   */
+  onCreated?: (clusterer: AMap.MarkerClusterer) => void;
+}
+
 export interface MarkersProps extends AMap.MapChildProps {
   visiable?: boolean;
   /**
    * 是否启用标记点聚合插件；如果是MarkerClustererOptions对象，表明启用
    */
-  useCluster?: AMap.MarkerClusterer.Options | boolean;
+  useCluster?: ClustererOptions | boolean;
   /**
    * 数组每一项都是都应标记点的属性或者其他自定义数据配置
    */
-  markers?: AMap.Marker.Options[];
+  markers?: MarkerOptions[];
   /**
    * 根据传入的 MarkerOption 返回一个 React 组件，或者返回false
    */
-  render?: (data: AMap.Marker.Options) => React.ReactNode | false;
+  render?: (data: MarkerOptions) => React.ReactNode | false;
   /**
    * 创建事件
    */
@@ -24,16 +51,8 @@ export interface MarkersProps extends AMap.MapChildProps {
 }
 
 const defaultOpts = {
-  useCluster: false,
-  markersCache: [],
-  markerIDCache: []
+  markersCache: []
 };
-const SCALE = 0.8;
-const SIZE_WIDTH = 32 * SCALE;
-const SIZE_HEIGHT = 46 * SCALE - 2;
-const SIZE_HOVER_WIDTH = 46 * SCALE;
-const SIZE_HOVER_HEIGHT = 66 * SCALE - 2;
-const MAX_INFO_MARKERS = 42;
 const IdKey = '__react_amap__';
 
 const ClusterProps = [
@@ -49,28 +68,19 @@ const ClusterProps = [
 class Markers extends React.Component<MarkersProps> {
   private map: AMap.Map;
   private AMap: MarkersProps['AMap'];
-  private element: HTMLElement;
   private markersCache: AMap.Marker[];
-  private markerIDCache: number[];
-  private useCluster: boolean;
-  private resetOffset: AMap.Pixel;
-  private hoverOffset: AMap.Pixel;
   private mapCluster!: AMap.MarkerClusterer;
-  private markerReactChildDOM: any;
+  private markerReactChildDOM: {
+    [id: number]: any
+  };
 
   constructor(props: MarkersProps) {
     super(props);
 
     this.map = props.map as AMap.Map;
     this.AMap = props.AMap;
-    this.element = this.map.getContainer() as HTMLElement;
     this.markersCache = defaultOpts.markersCache;
-    this.useCluster = false;
-    this.markerIDCache = defaultOpts.markerIDCache;
-    this.resetOffset = new this.AMap.Pixel(-SIZE_WIDTH / 2, -SIZE_HEIGHT);
-    this.hoverOffset = new this.AMap.Pixel(-SIZE_HOVER_WIDTH / 2, -SIZE_HOVER_HEIGHT);
-
-    console.log(this.map);
+    this.markerReactChildDOM = {}
 
     this.createMarkers(props);
   }
@@ -81,7 +91,7 @@ class Markers extends React.Component<MarkersProps> {
     }
   }
 
-  componentWillReceiveProps(nextProps: MarkersProps) {
+  componentDidUpdate(nextProps: MarkersProps) {
     if (this.map) {
       this.refreshMarkersLayout(nextProps);
     }
@@ -91,10 +101,13 @@ class Markers extends React.Component<MarkersProps> {
     return false;
   }
 
+  componentWillUnmount() {  }
+
   refreshMarkersLayout(nextProps: MarkersProps) {
     const markerChanged = (nextProps.markers !== this.props.markers);
     const clusterChanged = ((!!this.props.useCluster) !== (!!nextProps.useCluster));
     if (markerChanged) {
+      // 清除已有的标记点
       this.markersCache.length && this.markersCache.forEach((marker) => {
         if (marker) {
           marker.setMap(null);
@@ -106,11 +119,7 @@ class Markers extends React.Component<MarkersProps> {
       this.createMarkers(nextProps);
       this.setMarkerChild();
     }
-    // if (markerChanged || (clusterChanged)) {
-    //   if (this.markersWindow) {
-    //     this.markersWindow.close();
-    //   }
-    // }
+
     if (clusterChanged) {
       this.checkClusterSettings(nextProps);
     }
@@ -128,16 +137,21 @@ class Markers extends React.Component<MarkersProps> {
     render(<div>{child}</div>, dom);
   }
 
+  /**
+   * 创建标记点
+   * @param props
+   */
   createMarkers(props: MarkersProps) {
     const markers = props.markers || [];
 
     const mapMarkers: AMap.Marker[] = [];
     const markerReactChildDOM = {};
 
-    markers.length && markers.forEach((item, idx) => {
-      const options = this.buildCreateOptions(props, item, idx);
+    markers.forEach((item, index) => {
+      const options = this.buildCreateOptions(props, item, index);
       options['map'] = this.map;
 
+      // 自定义渲染
       let markerContent = null;
       if (isFunction(props.render)) {
         let markerChild = props.render(item);
@@ -145,7 +159,7 @@ class Markers extends React.Component<MarkersProps> {
           const div = document.createElement('div');
           div.setAttribute(IdKey, '1');
           markerContent = div;
-          markerReactChildDOM[idx] = markerChild;
+          markerReactChildDOM[index] = markerChild;
         }
       }
 
@@ -158,9 +172,6 @@ class Markers extends React.Component<MarkersProps> {
       options['content'] = markerContent;
 
       const marker = new window.AMap.Marker(options);
-      marker.on('click', (e) => { this.onMarkerClick(e); });
-      marker.on('mouseover', (e) => { this.onMarkerHover(e); });
-      marker.on('mouseout', (e) => { this.onMarkerHoverOut(e); });
 
       marker['render'] = (function(marker) {
         return function(component: React.ReactNode) {
@@ -173,11 +184,18 @@ class Markers extends React.Component<MarkersProps> {
     });
     this.markersCache = mapMarkers;
     this.markerReactChildDOM = markerReactChildDOM;
-    this.exposeMarkerInstance();
+
+    if (isFunction(props.onCreated)) {
+      props.onCreated(this.markersCache);
+    }
 
     this.checkClusterSettings(props);
   }
 
+  /**
+   * 处理Cluster
+   * @param props
+   */
   checkClusterSettings(props: MarkersProps) {
     if (props.useCluster) {
       this.loadClusterPlugin(props.useCluster)
@@ -185,6 +203,7 @@ class Markers extends React.Component<MarkersProps> {
           cluster.setMarkers(this.markersCache);
         });
     } else {
+      // 关闭则提取出所有的标记点
       if (this.mapCluster) {
         const markers = this.mapCluster.getMarkers();
         this.mapCluster.clearMarkers();
@@ -195,7 +214,13 @@ class Markers extends React.Component<MarkersProps> {
     }
   }
 
-  loadClusterPlugin(clusterConfig: AMap.MarkerClusterer.Options | boolean): Promise<AMap.MarkerClusterer> {
+  /**
+   * 加载 MarkerClusterer 插件
+   * @param clusterConfig
+   */
+  loadClusterPlugin(
+    clusterConfig: ClustererOptions | boolean
+  ): Promise<AMap.MarkerClusterer> {
     if (this.mapCluster) {
       return Promise.resolve(this.mapCluster);
     }
@@ -207,12 +232,16 @@ class Markers extends React.Component<MarkersProps> {
     });
   }
 
-  createClusterPlugin(config: AMap.MarkerClusterer.Options) {
+  /**
+   * 创建 MarkerClusterer 实例
+   * @param config
+   */
+  createClusterPlugin(config: ClustererOptions) {
     let options = {};
 
-    const defalutOptions: Object = {
+    const defalutOptions: ClustererOptions = {
       minClusterSize: 2,
-      zoomOnClick: false,
+      zoomOnClick: true,
       maxZoom: 18,
       gridSize: 60,
       averageCenter: true
@@ -227,44 +256,42 @@ class Markers extends React.Component<MarkersProps> {
     });
 
     this.mapCluster = new this.AMap.MarkerClusterer(this.map, [], options);
-    let events = {};
-    // if ('events' in config) {
-    //   events = config.events;
-    //   if ('created' in events) {
-    //     events.created(this.mapCluster);
-    //   }
-    // }
-    // this.bindClusterEvent(events);
+
+    // 事件绑定
+    if (isFunction(config.onCreated)) {
+      config.onCreated(this.mapCluster);
+    }
+
+    // 事件绑定
+    if (isFunction(config.onClick)) {
+      this.mapCluster.on('click', config.onClick);
+    }
+
     return this.mapCluster;
   }
 
-  exposeMarkerInstance() {
-    const { onCreated } = this.props;
-
-    if (onCreated && isFunction(onCreated)) {
-      onCreated(this.markersCache);
-    }
-  }
-
-  buildCreateOptions(props: MarkersProps, raw: AMap.Marker.Options, idx: number) {
+  /**
+   * 处理标记点参数
+   * @param props
+   * @param markerOpts
+   * @param index
+   */
+  buildCreateOptions(props: MarkersProps, markerOpts: MarkerOptions, index: number) {
     const result = {};
-    // 强制用户通过 render 函数来定义外观
-    // const disabledKeys = ['label', 'icon', 'content'];
-    // 还是不强制好，通过覆盖的方式来(如果有 render，覆盖 content/icon);
     const disabledKeys = ['extData'];
     MarkerAllProps.forEach((key) => {
-      if ((key in raw) && (disabledKeys.indexOf(key) === -1)) {
-        result[key] = getPropValue(key, raw[key]);
+      if ((key in markerOpts) && (disabledKeys.indexOf(key) === -1)) {
+        result[key] = getPropValue(key, markerOpts[key]);
       } else if (key in props) {
         if (isFunction(props[key])) {
-          const tmpValue = props[key].call(null, raw, idx);
+          const tmpValue = props[key].call(null, markerOpts, index);
           result[key] = getPropValue(key, tmpValue);
         } else {
           result[key] = getPropValue(key, props[key]);
         }
       }
     });
-    result['extData'] = raw;
+    result['extData'] = markerOpts;
     return result;
   }
 
@@ -275,51 +302,11 @@ class Markers extends React.Component<MarkersProps> {
     }
   }
 
-  setMarkerHoverOut(e: any, marker: Object) {
-    this.triggerMarkerHoverOut(e, marker);
-  }
-
-  setMarkerHovered(e: any, marker: Object) {
-    this.triggerMarkerHover(e, marker);
-  }
-
-  triggerMarkerHover(e: any, marker: Object) {
-    // const raw = marker.getExtData();
-    const events = this.props['events'] || {};
-    if (isFunction(events.mouseover)) {
-      events.mouseover(e, marker);
-    }
-  }
-
-  triggerMarkerHoverOut(e: any, marker: Object) {
-    const events = this.props['events'] || {};
-    if (isFunction(events.mouseout)) {
-      events.mouseout(e, marker);
-    }
-  }
-
-  onMarkerClick(e: any) {
-    const marker = e.target;
-    this.triggerMarkerClick(e, marker);
-  }
-
-  onMarkerHover(e: any) {
-    e.target.setTop(true);
-    this.setMarkerHovered(e, e.target);
-  }
-
-  onMarkerHoverOut(e: any) {
-    e.target.setTop(false);
-    this.setMarkerHoverOut(e, e.target);
-  }
   bindMarkerEvents(marker: AMap.Marker) {
     const events = this.props['events'] || {};
     const list = Object.keys(events);
-    const preserveEv = ['click', 'mouseover', 'mouseout', 'created'];
     list.length && list.forEach((evName) => {
-      if (preserveEv.indexOf(evName) === -1) {
-        marker.on(evName, events[evName]);
-      }
+      marker.on(evName, events[evName]);
     });
   }
 

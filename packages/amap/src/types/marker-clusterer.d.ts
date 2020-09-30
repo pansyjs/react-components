@@ -1,6 +1,6 @@
 declare namespace AMap {
   namespace MarkerClusterer {
-    interface EventMap<I> {
+    interface EventMap<I = any> {
       click: (data: { cluster: MarkerClusterer,lnglat: AMap.LngLat,target: I, markers: AMap.Marker[]}) => void;
     }
 
