@@ -4,35 +4,35 @@ export interface Options {
   /**
    * 单个水印区域宽度
    */
-  width?: number;
+  width: number;
   /**
    * 单个水印区域高度
    */
-  height?: number;
+  height: number;
   /**
    * 透明度，取值: 0~1
    */
-  opacity?: number;
+  opacity: number;
   /**
    * 旋转的角度，取值: -360~360
    */
-  rotate?: number;
+  rotate: number;
   /**
    * 设置字体大小
    */
-  fontSize?: number;
+  fontSize: number;
   /**
    * 设置字体粗细
    */
-  fontWeight?: CSSProperties['fontWeight'];
+  fontWeight: CSSProperties['fontWeight'];
   /**
    * 设置字体颜色
    */
-  fontColor?: string;
+  fontColor: string;
   /**
    * 规定字体系列
    */
-  fontFamily?: string;
+  fontFamily: string;
 }
 
 export interface WatermarkDOM {
