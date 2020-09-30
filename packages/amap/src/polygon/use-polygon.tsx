@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { PolygonProps } from './polygon';
 import { useVisiable, useEventProperties, useSetProperties } from '../hooks';
-import { Keys } from '../types/global';
+import { Keys, AutoCompleteEventMap } from '../types/global';
 
 export interface UsePolygon extends PolygonProps {}
 
@@ -11,7 +11,7 @@ const properties: string[] = [
 ];
 
 // AMap.Circle.EventMap
-const eventNames: Keys<AMap.AutoCompleteEventMap>[] = [
+const eventNames: Keys<AutoCompleteEventMap>[] = [
 
 ]
 
@@ -31,6 +31,7 @@ const usePolygon = (props = {} as UsePolygon) => {
         }
       }
     }
+    return () => {}
   }, [map]);
 
   useVisiable(polygon!, visiable);

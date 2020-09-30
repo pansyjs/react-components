@@ -1,8 +1,9 @@
 import React, { useImperativeHandle } from 'react';
 import useRectangle from './use-rectangle';
+import { MapChildProps } from '../types/global';
 
 export interface RectangleProps extends
-  AMap.MapChildProps,
+  MapChildProps,
   AMap.Rectangle.Options {
     visiable?: boolean;
   }

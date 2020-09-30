@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { MapProps } from './map';
 import { useSetStatus, useSetProperties, useEventProperties } from '../hooks';
-import { Keys } from '../types/global';
+import { Keys, MapEventMap } from '../types/global';
 import { toLnglat } from '../utils';
 
 interface UseMap extends MapProps {
@@ -49,7 +49,7 @@ const properties: string[] = [
 ];
 
 // AMap.Map.EventMap
-const eventNames: Keys<AMap.MapEventMap>[] = [
+const eventNames: Keys<MapEventMap>[] = [
   'onClick',
   'onDblClick',
   'onRightClick',
@@ -90,7 +90,7 @@ const useMap = (props: UseMap = {}): UseMapResult => {
   useEffect(
     () => {
       if (container && !mapInstance && window.AMap) {
-        setMapInstance(new AMap.Map(container, { zoom, ...props }));
+        setMapInstance(new AMap.Map(container, { zoom, ...props } as AMap.Map.Options));
       }
 
       return () => {

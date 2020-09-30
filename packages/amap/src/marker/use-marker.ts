@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { MarkerProps } from './marker';
 import { useVisiable, useEventProperties, useSetProperties } from '../hooks';
-import { Keys } from '../types/global';
+import { Keys, MarkerEventMap } from '../types/global';
 import { toLnglat } from '../utils';
 
 export interface UseMarker extends MarkerProps {}
@@ -29,7 +29,7 @@ const properties: string[] = [
 ];
 
 // AMap.Marker.EventMap
-const eventNames: Keys<AMap.MarkerEventMap>[] = [
+const eventNames: Keys<MarkerEventMap>[] = [
   'onClick',
   'onDblClick',
   'onRightClick',
@@ -53,7 +53,7 @@ const useMarker = (props = {} as UseMarker) => {
   const { map, AMap, visiable, position, ...rest } = props;
   const [marker, setMarker] = useState<AMap.Marker>();
 
-  const lnglat = toLnglat(position as AMap.PositionType);
+  const lnglat = toLnglat(position as AMap.LngLat);
 
   useEffect(() => {
     if (!marker && AMap && map) {
@@ -68,6 +68,8 @@ const useMarker = (props = {} as UseMarker) => {
         }
       }
     }
+
+    return () => {}
   }, [map]);
 
   useVisiable(marker!, visiable);

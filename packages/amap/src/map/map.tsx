@@ -2,15 +2,16 @@ import React, { useEffect, useRef, useImperativeHandle } from 'react';
 import useMap from './use-map';
 import APILoader from '../api-loader';
 import { Options } from '../api-loader/use-api-loader';
+import { MapEventMap, PositionType } from '../types/global';
 
 export type MapOptions = AMap.Map.Options;
 
 export interface InternalMapProps extends
-  Partial<MapOptions>,
-  Partial<AMap.MapEventMap> {
+  Partial<Omit<MapOptions, 'center'>>,
+  Partial<MapEventMap> {
     className?: string;
     style?: React.CSSProperties;
-    center?: AMap.LocationValue;
+    center?: PositionType;
   }
 
 export interface MapProps extends InternalMapProps {
