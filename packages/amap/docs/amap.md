@@ -24,7 +24,15 @@ Map 组件是其他组件的基础，Map 组件会给所有的子组件注入两
 
 Map 的父组件必须具有宽度和高度；
 
-<code src="../demos/demo-01.tsx" />
+<code src="../demos/map/demo-01.tsx" />
+
+### 事件绑定
+
+<code src="../demos/map/demo-03.tsx" />
+
+### 在 Map 下添加自定义地图组件
+
+<code src="../demos/map/demo-02.tsx" />
 
 ## API
 

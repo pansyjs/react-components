@@ -19,6 +19,17 @@ export interface MapProps extends InternalMapProps {
   loading?: React.ReactNode;
 }
 
+const wrapperStyle: React.CSSProperties = {
+  width: '100%',
+  height: '100%',
+  position: 'relative'
+}
+
+const containerStyle: React.CSSProperties = {
+  width: '100%',
+  height: '100%'
+}
+
 const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, InternalMapProps> = (props, ref) => {
   const { className, style, children, ...rest } = props;
   const rootRef = useRef<HTMLDivElement>(null);
@@ -60,11 +71,11 @@ const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, InternalMap
   }
 
   return (
-    <>
+    <div style={wrapperStyle}>
       <div
         ref={rootRef}
         className={className}
-        style={{ fontSize: 1, height: '100%', ...style}}
+        style={containerStyle}
       />
       {map && (
         <>
@@ -72,7 +83,7 @@ const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, InternalMap
          {renderChildren()}
         </>
       )}
-    </>
+    </div>
   )
 }
 
