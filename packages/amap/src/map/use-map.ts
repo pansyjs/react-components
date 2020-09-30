@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { MapProps } from './map';
 import { useSetStatus, useSetProperties, useEventProperties } from '../hooks';
 import { Keys } from '../types/global';
+import { toLnglat } from '../utils';
 
 interface UseMap extends MapProps {
   /**
@@ -113,10 +114,12 @@ const useMap = (props: UseMap = {}): UseMapResult => {
     }
   }, [zoom, props.zoom]);
 
+  const center = toLnglat(props?.center as AMap.LngLat);
+
   // 设置地图状态
   useSetStatus<AMap.Map.Status, AMap.Map, UseMap>(mapInstance!, props, mapStatus);
   // 设置地图受控属性
-  useSetProperties<AMap.Map, UseMap>(mapInstance!, props, properties);
+  useSetProperties<AMap.Map, UseMap>(mapInstance!, { ...props, center }, properties);
   // 绑定事件
   useEventProperties<AMap.Map, UseMap>(mapInstance!, props, eventNames);
 

@@ -34,7 +34,7 @@ export const toLnglat = (position: AMap.PositionType) => {
     lng = position.longitude
     lat = position.latitude
   }
-  return hasWindow ? new window.AMap.LngLat(lng, lat) : null
+  return hasWindow ? new window.AMap.LngLat(lng, lat) : undefined
 }
 
 /**

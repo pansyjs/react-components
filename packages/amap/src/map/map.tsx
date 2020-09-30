@@ -3,10 +3,15 @@ import useMap from './use-map';
 import APILoader from '../api-loader';
 import { Options } from '../api-loader/use-api-loader';
 
-export interface InternalMapProps extends Partial<AMap.Map.Options>, Partial<AMap.Map.EventMap> {
-  className?: string;
-  style?: React.CSSProperties;
-}
+export type MapOptions = AMap.Map.Options;
+
+export interface InternalMapProps extends
+  Partial<MapOptions>,
+  Partial<AMap.MapEventMap> {
+    className?: string;
+    style?: React.CSSProperties;
+    center?: AMap.LocationValue;
+  }
 
 export interface MapProps extends InternalMapProps {
   options?: Options;

@@ -11,8 +11,17 @@ group:
 
 ##  Markers 海量点标记组件
 
+## 何时使用
+
+- 显示大量标记的时候使用
+
 ## 代码示例
 
-### 简单使用
+### 基础用法
 
-<code src="../demos/demo-09.tsx" />
+<code src="../demos/markers/demo-01.tsx" />
+
+### useCluster 属性的使用
+
+<code src="../demos/markers/demo-02.tsx" />
+
