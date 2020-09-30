@@ -78,8 +78,8 @@ declare namespace AMap {
     }
   }
 
-  class MarkerClusterer<D extends MassMarks.Data = MassMarks.Data> extends Layer {
-    constructor(data: D[] | string, opts: MarkerClusterer.Options);
+  class MarkerClusterer extends Layer {
+    constructor(map: AMap.Map, markers: AMap.Marker[], opts: MarkerClusterer.Options);
 
     /**
      * 添加一个需进行聚合的点标记

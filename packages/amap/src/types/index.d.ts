@@ -24,6 +24,11 @@ declare namespace AMap {
     { lng: number; lat: number } |
     { longitude: number, latitude: number };
 
+  export type OffsetType =
+    AMap.Pixel |
+    [number, number] |
+    { x: number, y: number };
+
   export interface MapEventMap {
     onClick: MapsEvent<'click', Map>;
     onDblClick: MapsEvent<'dblclick', Map>;

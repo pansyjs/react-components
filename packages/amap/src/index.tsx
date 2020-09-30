@@ -1,6 +1,7 @@
 export { default as Map } from './map';
 
 export { default as Marker } from './marker';
+export { default as Markers } from './markers';
 export { default as CircleMarker } from './circle-marker';
 
 export { default as Circle } from './circle';
