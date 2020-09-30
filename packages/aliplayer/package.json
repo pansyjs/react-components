@@ -9,6 +9,16 @@
     "lib"
   ],
   "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 11"
+  ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
     "access": "public"
