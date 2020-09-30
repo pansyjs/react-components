@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
-import { MapProps } from './map';
+import { useEffect, useState, useRef } from 'react';
+import { MapProps, PluginName, PluginObjType, PluginType } from './map';
 import { useSetStatus, useSetProperties, useEventProperties } from '../hooks';
 import { Keys, MapEventMap } from '../types/global';
+import { isFunction } from '../utils';
 import { toLnglat } from '../utils';
 
 interface UseMap extends MapProps {
@@ -78,11 +79,37 @@ const eventNames: Keys<MapEventMap>[] = [
   'onDragging',
   'onDragEnd',
   'onResize'
-]
+];
+
+const pluginList: PluginName[] = [
+  'Scale',
+  'ToolBar',
+  'MapType',
+  'OverView',
+  'ControlBar'
+];
+
+const pluginDefaultOpts = {
+  MapType: {
+    showRoad: false,
+    showTraffic: false,
+    defaultType: 0
+  },
+  ToolBar: {
+    position: 'RB',
+    noIpLocate: true,
+    locate: true,
+    liteStyle: true,
+    autoPosition: false
+  },
+  OverView: {},
+  ControlBar: {}
+}
 
 // type Properties = FunctionKeys<AMap.Map>
 
 const useMap = (props: UseMap = {}): UseMapResult => {
+  const pluginMap = useRef<{[key: string]: any}>({});
   const [mapInstance, setMapInstance] = useState<AMap.Map>();
   const [zoom, setZoom] = useState(props.zoom || 15);
   const [container, setContainer] = useState<HTMLDivElement>(props.container as HTMLDivElement);
@@ -102,17 +129,153 @@ const useMap = (props: UseMap = {}): UseMapResult => {
     [container]
   );
 
-  useEffect(() => {
-    if (
-      mapInstance &&
-      typeof props.zoom === 'number' &&
-      zoom !== props.zoom &&
-      props.zoom >= 2 && props.zoom <= 20
-    ) {
-      setZoom(props.zoom);
-      mapInstance.setZoom(props.zoom);
+  useEffect(
+    () => {
+      if (
+        mapInstance &&
+        typeof props.zoom === 'number' &&
+        zoom !== props.zoom &&
+        props.zoom >= 2 && props.zoom <= 20
+      ) {
+        setZoom(props.zoom);
+        mapInstance.setZoom(props.zoom);
+      }
+    },
+    [zoom, props.zoom]
+  );
+
+  useEffect(
+    () => {
+      if (!mapInstance) return;
+      const pluginArr: PluginName[] = [...pluginList];
+      const plugins = props.plugins || [];
+
+      if (plugins && plugins.length) {
+        plugins.forEach((item) => {
+          let name: PluginName;
+          let config: PluginObjType['options'] = {};
+          let visible: boolean;
+
+          if (typeof item === 'string') {
+            name = item
+            config = {}
+            visible = true
+          } else {
+            name = item.name
+            config = item.options || {}
+            visible = (('visible' in config) && (typeof config.visible === 'boolean')) ? config.visible : true
+            // @ts-ignore
+            delete config.visible
+          }
+          const idx = pluginArr.indexOf(name)
+          if (idx !== -1 && visible) {
+            pluginArr.splice(idx, 1)
+            installPlugin(name, config);
+          }
+        });
+
+        removeOrDisablePlugins(pluginArr);
+      }
+
+      return () => {
+        Object.keys(pluginMap.current || {})
+          .forEach(item => {
+            removePlugin(item);
+          });
+      }
+    },
+    [props.plugins, mapInstance]
+  );
+
+  const removePlugin = (name: string) => {
+    switch (name) {
+      case 'Scale':
+      case 'ToolBar':
+      case 'MapType':
+      case 'ControlBar':
+      case 'OverView':
+        if (mapInstance && pluginMap.current[name]) {
+          mapInstance.removeControl(pluginMap.current[name]);
+          pluginMap.current[name] = undefined;
+        }
+        break
+      default:
+      // do nothing
     }
-  }, [zoom, props.zoom]);
+  }
+
+  const installPlugin = (
+    name: string,
+    opts: PluginObjType['options'] = {}
+  ) => {
+    switch (name) {
+      case 'Scale':
+      case 'ToolBar':
+      case 'OverView':
+      case 'MapType':
+        setMapPlugin(name, opts)
+        break
+      case 'ControlBar':
+        setControlBar(opts)
+        break
+      default:
+      // do nothing
+    }
+  }
+
+  const removeOrDisablePlugins = (plugins: PluginName[]) => {
+    if (plugins && plugins.length) {
+      plugins.forEach((item) => {
+        if (item in pluginMap.current) {
+          // ControlBar has no 'hide' method
+          if (item === 'ControlBar') {
+            mapInstance!.removeControl(pluginMap.current[item]);
+            delete pluginMap.current[item];
+          } else {
+            pluginMap.current[item].hide()
+          }
+        }
+      })
+    }
+  }
+
+  const setMapPlugin = (name: string, opts: PluginObjType['options']) => {
+    if (pluginMap.current[name]) {
+      pluginMap.current[name].show()
+    } else {
+      const { onCreated, ...restOpts } = opts
+      const initOpts = {
+        ...pluginDefaultOpts[name],
+        ...restOpts
+      };
+      mapInstance!.plugin([`AMap.${name}`], () => {
+        pluginMap.current[name] = new window.AMap[name](initOpts);
+        mapInstance!.addControl(pluginMap.current[name]);
+        if (isFunction(onCreated)) {
+          onCreated(pluginMap.current[name])
+        }
+      })
+    }
+  }
+
+  const setControlBar = (opts: PluginObjType['options']) => {
+    if (pluginMap.current.ControlBar) {
+      // do nothing
+    } else {
+      const { onCreated, ...restOpts } = opts
+      const initOpts = {
+        ...pluginDefaultOpts.ControlBar,
+        ...restOpts
+      };
+      mapInstance!.plugin(['AMap.ControlBar'], () => {
+        pluginMap.current.ControlBar = new window.AMap.ControlBar(initOpts as any);
+        mapInstance!.addControl(pluginMap.current.ControlBar)
+        if (isFunction(onCreated)) {
+          onCreated(pluginMap.current.ControlBar)
+        }
+      })
+    }
+  }
 
   const center = toLnglat(props?.center as AMap.LngLat);
 

@@ -10,3 +10,9 @@ export { default as Rectangle } from './rectangle';
 
 export { default as InfoWindow } from './info-window';
 export { default as AutoComplete } from './auto-complete';
+
+export { default as Scale } from './scale';
+export { default as HawkEye } from './hawk-eye';
+export { default as MapType } from './map-type';
+export { default as ToolBar } from './tool-bar';
+export { default as ControlBar } from './control-bar';

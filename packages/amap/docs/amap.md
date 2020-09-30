@@ -26,6 +26,10 @@ Map 的父组件必须具有宽度和高度；
 
 <code src="../demos/map/demo-01.tsx" />
 
+### Map 中 plugins 的使用
+
+<code src="../demos/map/demo-04.tsx" />
+
 ### 事件绑定
 
 <code src="../demos/map/demo-03.tsx" />

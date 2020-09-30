@@ -6,12 +6,31 @@ import { MapEventMap, PositionType } from '../types/global';
 
 export type MapOptions = AMap.Map.Options;
 
+export type PluginName =
+  'Scale' |
+  'ToolBar' |
+  'MapType' |
+  'OverView' |
+  'ControlBar';
+
+export type PluginObjType = {
+  name: PluginName;
+  options: {
+    visible?: boolean;
+    onCreated?: (ins: any) => void;
+    [key: string]: any;
+  }
+}
+
+export type PluginType = PluginObjType | PluginName;
+
 export interface InternalMapProps extends
   Partial<Omit<MapOptions, 'center'>>,
   Partial<MapEventMap> {
     className?: string;
     style?: React.CSSProperties;
     center?: PositionType;
+    plugins?: PluginType[];
   }
 
 export interface MapProps extends InternalMapProps {
@@ -77,7 +96,7 @@ const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, InternalMap
         className={className}
         style={containerStyle}
       />
-      {map && (
+      {(map && AMap) && (
         <>
          {typeof children === 'function' && children({ map, AMap })}
          {renderChildren()}
@@ -88,6 +107,10 @@ const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, InternalMap
 }
 
 const ForwardRefInternalMap = React.forwardRef(InternalMap);
+
+ForwardRefInternalMap.defaultProps = {
+  plugins: []
+}
 
 const Map: React.FC<MapProps> = (props) => {
   const { options = {}, loading, ...rest } = props;
