@@ -65,7 +65,7 @@ const ClusterProps = [
   'averageCenter',
   'styles',
   'zoomOnClick',
-  'renderCluserMarker'
+  'renderClusterMarker'
 ];
 
 class Markers extends React.Component<MarkersProps> {
