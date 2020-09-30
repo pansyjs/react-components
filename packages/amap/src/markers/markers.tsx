@@ -1,17 +1,20 @@
+/// <reference types="../types/marker-clusterer" />
+
 import React from 'react';
 import { render } from 'react-dom';
 import { isFunction } from '../utils';
 import { MarkerAllProps, getPropValue, renderMarkerComponent } from '../utils/marker';
+import { OffsetType, PositionType, MapChildProps } from '../types/global';
 
 export interface MarkerOptions extends Omit<AMap.Marker.Options, 'offset'| 'position'> {
   /**
    * 标记点偏移量
    */
-  offset?: AMap.OffsetType;
+  offset?: OffsetType;
   /**
    * 标记点位置
    */
-  position?: AMap.PositionType;
+  position?: PositionType;
 
   /**
    * 方便注入其他数据
@@ -30,7 +33,7 @@ export interface ClustererOptions extends AMap.MarkerClusterer.Options {
   onCreated?: (clusterer: AMap.MarkerClusterer) => void;
 }
 
-export interface MarkersProps extends AMap.MapChildProps {
+export interface MarkersProps extends MapChildProps {
   visiable?: boolean;
   /**
    * 是否启用标记点聚合插件；如果是MarkerClustererOptions对象，表明启用

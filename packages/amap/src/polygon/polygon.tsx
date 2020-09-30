@@ -1,8 +1,9 @@
 import React, { useImperativeHandle } from 'react';
 import usePolygon from './use-polygon';
+import { MapChildProps } from '../types/global';
 
 export interface PolygonProps extends
-  AMap.MapChildProps,
+  MapChildProps,
   AMap.Polygon.Options {
     visiable?: boolean;
   }

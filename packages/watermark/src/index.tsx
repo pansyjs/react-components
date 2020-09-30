@@ -82,6 +82,7 @@ const Watermark: React.FC<WatermarkProps> = ({
   useLayoutEffect(() => {
     if (monitor) {
       disconnect();
+      // @ts-ignore
       security.current = new SecurityDefense(
         {
           watermarkId: watermarkId,
@@ -107,11 +108,13 @@ const Watermark: React.FC<WatermarkProps> = ({
   const disconnect = () => {
     DOMRemoveObserver.current && DOMRemoveObserver.current.disconnect();
     DOMAttrModifiedObserver.current && DOMAttrModifiedObserver.current.disconnect();
+    // @ts-ignore
     security.current = null;
   }
 
   const getCanvasUrl = () => {
     const newOptions = Object.assign({}, defaultOptions, options)
+    // @ts-ignore
     return getDrawPatternByCanvas(text, newOptions)
   }
 

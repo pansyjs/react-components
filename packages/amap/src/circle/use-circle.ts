@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { CircleProps } from './circle';
 import { useVisiable, useEventProperties, useSetProperties } from '../hooks';
 import { toLnglat } from '../utils';
-import { Keys } from '../types/global';
+import { Keys, AutoCompleteEventMap, PositionType } from '../types/global';
 
 export interface UseCircle extends CircleProps {}
 
@@ -14,7 +14,7 @@ const properties: string[] = [
 ];
 
 // AMap.Circle.EventMap
-const eventNames: Keys<AMap.AutoCompleteEventMap>[] = [
+const eventNames: Keys<AutoCompleteEventMap>[] = [
 
 ]
 
@@ -22,7 +22,7 @@ const useCircle = (props = {} as UseCircle) => {
   const { map, visiable, center,...rest } = props;
   const [circle, setCircle] = useState<AMap.Circle>();
 
-  const lnglat = toLnglat(center as AMap.PositionType);
+  const lnglat = toLnglat(center as PositionType);
 
   useEffect(() => {
     if (AMap && map && !circle) {

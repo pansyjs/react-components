@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { InfoWindowProps } from './info-window';
 import { useEventProperties, useSetProperties } from '../hooks';
-import { Keys } from '../types/global';
+import { Keys, InfoWindowEventMap, PositionType } from '../types/global';
 import { toLnglat } from '../utils';
 
 export interface UseInfoWindow extends InfoWindowProps {};
@@ -13,7 +13,7 @@ const properties = [
 ];
 
 // AMap.InfoWindow.EventMap
-const eventNames: Keys<AMap.InfoWindowEventMap>[] = [
+const eventNames: Keys<InfoWindowEventMap>[] = [
   'onOpen',
   'onClose',
   'onChange'
@@ -24,7 +24,7 @@ const useInfoWindow = (props = {} as UseInfoWindow) => {
   const [isOpen, setIsOpen] = useState(visiable);
   const [infoWindow, setInfoWindow] = useState<AMap.InfoWindow>();
 
-  const position = toLnglat(props.position as AMap.PositionType);
+  const position = toLnglat(props.position as PositionType);
 
   useEffect(() => {
     if (!AMap || !map) return;
@@ -42,6 +42,8 @@ const useInfoWindow = (props = {} as UseInfoWindow) => {
         }
       }
     }
+
+    return () => {}
   }, [map]);
 
   useMemo(() => {

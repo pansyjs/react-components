@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { AutoCompleteProps } from './auto-complete';
 import { useEventProperties, useSetProperties } from '../hooks';
-import { Keys } from '../types/global';
+import { Keys, AutoCompleteEventMap } from '../types/global';
 
 export interface UseAutoComplete extends AutoCompleteProps {};
 
@@ -12,7 +12,7 @@ const properties: string[] = [
 ];
 
 // AMap.Autocomplete.EventMap
-const eventNames: Keys<AMap.AutoCompleteEventMap>[] = [
+const eventNames: Keys<AutoCompleteEventMap>[] = [
   'onComplete',
   'onError',
   'onSelect',
@@ -37,6 +37,8 @@ const useAutoComplete = (props = {} as UseAutoComplete) => {
         }
       }
     }
+
+    return () => {}
   }, []);
 
   useSetProperties<AMap.Autocomplete, UseAutoComplete>(autoComplete!, props, properties);

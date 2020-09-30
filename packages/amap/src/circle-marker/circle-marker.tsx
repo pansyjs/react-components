@@ -2,10 +2,11 @@
 
 import React, { useImperativeHandle } from 'react';
 import useCircleMarker from './use-circle-marker';
+import { MapChildProps, InfoWindowEventMap } from '../types/global';
 
 export interface CircleMarkerProps extends
-  AMap.MapChildProps,
-  Partial<AMap.InfoWindowEventMap>,
+  MapChildProps,
+  Partial<InfoWindowEventMap>,
   AMap.CircleMarker.Options {
     visiable?: boolean;
   }

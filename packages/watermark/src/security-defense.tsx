@@ -21,7 +21,7 @@ class SecurityDefense {
   private securityAlarm: SecurityHooks['securityAlarm'];
   private updateObserver: SecurityHooks['updateObserver'];
 
-  constructor(watermarkDOM: WatermarkDOM, style: SecurityDefenseStyle, securityHooks) {
+  constructor(watermarkDOM: WatermarkDOM, style: SecurityDefenseStyle, securityHooks: any) {
     this.watermarkId = watermarkDOM.watermarkId
     this.watermarkWrapperId = watermarkDOM.watermarkWrapperId
 
@@ -41,14 +41,17 @@ class SecurityDefense {
     return document.getElementById(id)
   }
 
+  // @ts-ignore
   registerNodeRemoveListener = (target) => {
     const MutationObserver = getMutationObserver();
     let observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.type === 'childList') {
-          const removeNodes = mutation.removedNodes
+          const removeNodes = mutation.removedNodes;
+          // @ts-ignore
           if (removeNodes && removeNodes[0] && removeNodes[0].id) {
-            const id = removeNodes[0].id
+            // @ts-ignore
+            const id = removeNodes[0].id;
             if (id && id.indexOf(this.watermarkId) > -1) {
               if (this.securityAlarm) {
                 this.securityAlarm()
@@ -66,6 +69,7 @@ class SecurityDefense {
     this.updateObserver({ DOMRemoveObserver: observer })
   }
 
+  // @ts-ignore
   createWaterMarkDom = (parent) => {
     const newWaterMark: HTMLDivElement = document.createElement('div')
     this.watermarkId = genRandomId('water-mark-dynamic')
@@ -78,6 +82,7 @@ class SecurityDefense {
     this.registerNodeAttrChangeListener(newDOM)
   }
 
+  // @ts-ignore
   registerNodeAttrChangeListener = (target) => {
     const MutationObserver = getMutationObserver();
 

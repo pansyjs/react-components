@@ -65,7 +65,7 @@ export function getDrawPatternByCanvas(
   // canvas.setAttribute('width', `${width * dpr}px`);
   // canvas.setAttribute('height', `${height * dpr}px`);
 
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
   // 绘制之前清除画布
   ctx.clearRect(0, 0, width, height);

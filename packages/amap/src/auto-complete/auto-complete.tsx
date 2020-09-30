@@ -1,9 +1,10 @@
 import React, { useImperativeHandle } from 'react';
 import useAutoComplete from './use-auto-complete';
+import { MapChildProps, AutoCompleteEventMap } from '../types/global';
 
 export interface AutoCompleteProps extends
-  AMap.MapChildProps,
-  Partial<AMap.AutoCompleteEventMap>,
+  MapChildProps,
+  Partial<AutoCompleteEventMap>,
   AMap.Autocomplete.Options {
     visiable?: boolean;
   }
