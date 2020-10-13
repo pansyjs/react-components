@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useImperativeHandle } from 'react';
 import useMap from './use-map';
-import APILoader from '../api-loader';
 import { Options } from '../api-loader/use-api-loader';
 import { MapEventMap, PositionType } from '../types/global';
 
@@ -106,20 +105,10 @@ const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, InternalMap
   )
 }
 
-const ForwardRefInternalMap = React.forwardRef(InternalMap);
+const Map = React.forwardRef(InternalMap);
 
-ForwardRefInternalMap.defaultProps = {
+Map.defaultProps = {
   plugins: []
-}
-
-const Map: React.FC<MapProps> = (props) => {
-  const { options = {}, loading, ...rest } = props;
-
-  return (
-    <APILoader {...options} loading={loading}>
-      <ForwardRefInternalMap {...rest} />
-    </APILoader>
-  )
 }
 
 export default Map;

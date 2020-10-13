@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
-import { MapProps, PluginName, PluginObjType, PluginType } from './map';
+import { MapProps, PluginName, PluginObjType } from './map';
 import { useSetStatus, useSetProperties, useEventProperties } from '../hooks';
 import { Keys, MapEventMap } from '../types/global';
 import { isFunction } from '../utils';
+import AMapLoader from '../utils/api-loader';
 import { toLnglat } from '../utils';
 
 interface UseMap extends MapProps {
@@ -116,8 +117,12 @@ const useMap = (props: UseMap = {}): UseMapResult => {
 
   useEffect(
     () => {
-      if (container && !mapInstance && window.AMap) {
-        setMapInstance(new AMap.Map(container, { zoom, ...props } as AMap.Map.Options));
+      if (!mapInstance && container) {
+        new AMapLoader()
+          .load()
+          .then((AMap) => {
+            setMapInstance(new AMap.Map(container, { zoom, ...props } as AMap.Map.Options));
+          })
       }
 
       return () => {
@@ -126,7 +131,7 @@ const useMap = (props: UseMap = {}): UseMapResult => {
         }
       }
     },
-    [container]
+    [container, mapInstance]
   );
 
   useEffect(

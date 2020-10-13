@@ -5,6 +5,10 @@
 declare global {
   interface Window {
     AMap: AMap.Map;
-    __amap_init_callback: () => void;
+    AMapUI: any;
+    Loca: any;
+    __amap_init_callback?: (error?: Error) => void;
   }
 }
+
+export {};
