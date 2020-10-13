@@ -1,27 +1,9 @@
 import React, { useEffect, useRef, useImperativeHandle } from 'react';
 import useMap from './use-map';
-import { Options } from '../api-loader/use-api-loader';
+import { LoadOption } from '../utils/api-loader';
 import { MapEventMap, PositionType } from '../types/global';
 
 export type MapOptions = AMap.Map.Options;
-
-export type PluginName =
-  'Scale' |
-  'ToolBar' |
-  'MapType' |
-  'OverView' |
-  'ControlBar';
-
-export type PluginObjType = {
-  name: PluginName;
-  options: {
-    visible?: boolean;
-    onCreated?: (ins: any) => void;
-    [key: string]: any;
-  }
-}
-
-export type PluginType = PluginObjType | PluginName;
 
 export interface InternalMapProps extends
   Partial<Omit<MapOptions, 'center'>>,
@@ -29,11 +11,10 @@ export interface InternalMapProps extends
     className?: string;
     style?: React.CSSProperties;
     center?: PositionType;
-    plugins?: PluginType[];
   }
 
 export interface MapProps extends InternalMapProps {
-  options?: Options;
+  options?: LoadOption;
   loading?: React.ReactNode;
 }
 
@@ -48,7 +29,7 @@ const containerStyle: React.CSSProperties = {
   height: '100%'
 }
 
-const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, InternalMapProps> = (props, ref) => {
+const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, MapProps> = (props, ref) => {
   const { className, style, children, ...rest } = props;
   const rootRef = useRef<HTMLDivElement>(null);
   const { map, setContainer } = useMap({
@@ -106,9 +87,5 @@ const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, InternalMap
 }
 
 const Map = React.forwardRef(InternalMap);
-
-Map.defaultProps = {
-  plugins: []
-}
 
 export default Map;

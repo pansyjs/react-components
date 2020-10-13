@@ -33,7 +33,7 @@ interface Config {
   }
 }
 
-interface LoadOption {
+export interface LoadOption {
   key: string;
   version?: string;
   hostAndPath?: string;
@@ -77,7 +77,7 @@ const defaultConfig: Config = {
   key: 'f97efc35164149d0c0f299e7a8adb3d2',
   hostAndPath: 'webapi.amap.com',
   AMap: {
-    version: '2.0',
+    version: '1.4.15',
     plugins: [],
   },
   AMapUI: {

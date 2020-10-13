@@ -12,7 +12,7 @@ group:
 
 # Map 地图组件
 
-Map 组件是其他组件的基础，Map 组件会给所有的子组件注入两个属性 `map`，`AMap`
+Map 组件是其他组件的基础，其他地图组件必须作为 Map 的子组件使用，Map 组件会给所有的子组件注入两个属性 `map`，`AMap`，在拥有访问这两个属性的能力后，就可以根据高德原生 API 做高德允许你做的一切事情。
 
 ## 何时使用
 
@@ -50,11 +50,12 @@ options
 
 | 属性 |说明|类型|默认值|
 |-----|----|----|----|
-|mapKey| 加载高德 API 使用的 Key | `string` | -- |
+|key| 加载高德 API 使用的 Key | `string` | -- |
 |version| 加载的高德 API 的版本 | `string` | `1.4.15` |
-|mapUI| 是否加载 AMapUI 组件库 | `boolean` | `false` |
-|protocol| 加载高德 API 的协议前缀 | `http` \| `https` | -- |
-|hostAndPath| 加载高德API的前半部分 |`string`|`webapi.amap.com/maps`|
+|plugins| 需要加载的地图插件 | `string[]` | `[]` |
+|AMapUI| 加载 AMapUI 配置 | `{ version: string; plugins: string[] }` | `{ version: '1.1', plugins: [] }` |
+|Loca| 加载 Loca 配置 | `{ version: string; }` | `{ version: '1.3.2' }` |
+|hostAndPath| 加载高德API的前半部分 |`string`|`webapi.amap.com`|
 
 ## Event
 
