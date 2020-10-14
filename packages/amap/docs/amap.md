@@ -34,6 +34,14 @@ Map 的父组件必须具有宽度和高度；
 
 <code src="../demos/map/demo-02.tsx" />
 
+### 地图加载过渡样式
+
+<code src="../demos/map/demo-04.tsx" />
+
+### 加载 AMapUI 组件库
+
+<code src="../demos/map/demo-05.tsx" />
+
 ## API
 
 | 属性 |说明|类型|默认值|
