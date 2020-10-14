@@ -16,3 +16,4 @@ export { default as HawkEye } from './hawk-eye';
 export { default as MapType } from './map-type';
 export { default as ToolBar } from './tool-bar';
 export { default as ControlBar } from './control-bar';
+export { default as MouseTool } from './mouse-tool';

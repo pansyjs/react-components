@@ -102,3 +102,10 @@ export interface AutoCompleteEventMap {
   onChoose: Event<'choose', { tip: Tip }>;
 }
 
+export interface MouseToolEventMap<T extends ShapeOverlay = any> {
+   /**
+   * 鼠标工具绘制覆盖物结束时触发此事件，instance对象为绘制出来的覆盖物对象。
+   */
+  onDraw: (type: string, instance: T) => void;
+}
+
