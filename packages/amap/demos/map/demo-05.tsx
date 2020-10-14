@@ -6,14 +6,12 @@ import { MapChildProps } from '@pansy/react-amap/es/types/global';
 class UIMarker extends React.Component<MapChildProps> {
   componentDidMount() {
     window.AMapUI.loadUI(['overlay/SimpleMarker'], (SimpleMarker: any) => {
-      console.log(SimpleMarker);
       this.initPage(SimpleMarker);
     })
   }
 
   loadUI() {
     window.AMapUI.loadUI(['overlay/SimpleMarker'], (SimpleMarker: any) => {
-      // console.log();
       this.initPage(SimpleMarker);
     })
   }
