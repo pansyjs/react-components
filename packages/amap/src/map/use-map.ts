@@ -15,7 +15,9 @@ interface UseMap extends MapProps {
 
 interface UseMapResult {
   map: AMap.Map,
-  setContainer: any
+  AMap: typeof window.AMap;
+  loaded: boolean;
+  setContainer: React.Dispatch<React.SetStateAction<HTMLDivElement>>;
 }
 
 const mapStatus: Keys<AMap.Map.Status>[] = [
@@ -83,7 +85,9 @@ const eventNames: Keys<MapEventMap>[] = [
 ];
 
 const useMap = (props: UseMap = {}): UseMapResult => {
+  const [loaded, setLoaded] = useState<boolean>(true);
   const [mapInstance, setMapInstance] = useState<AMap.Map>();
+  const [AMap, setAMap] = useState<AMap.Map>();
   const [zoom, setZoom] = useState(props.zoom || 15);
   const [container, setContainer] = useState<HTMLDivElement>(props.container as HTMLDivElement);
 
@@ -93,6 +97,8 @@ const useMap = (props: UseMap = {}): UseMapResult => {
         new AMapLoader()
           .load(props.options)
           .then((AMap) => {
+            setAMap(AMap);
+            setLoaded(false);
             setMapInstance(new AMap.Map(container, { zoom, ...props } as AMap.Map.Options));
           })
       }
@@ -121,7 +127,7 @@ const useMap = (props: UseMap = {}): UseMapResult => {
     [zoom, props.zoom]
   );
 
-  const center = toLnglat(props?.center as AMap.LngLat);
+  const center = AMap && toLnglat(props?.center as AMap.LngLat);
 
   // 设置地图状态
   useSetStatus<AMap.Map.Status, AMap.Map, UseMap>(mapInstance!, props, mapStatus);
@@ -132,6 +138,8 @@ const useMap = (props: UseMap = {}): UseMapResult => {
 
   return {
     map: mapInstance as AMap.Map,
+    AMap: AMap as typeof window.AMap,
+    loaded,
     setContainer,
   }
 }

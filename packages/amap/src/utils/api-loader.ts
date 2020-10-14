@@ -111,12 +111,15 @@ let callbackMap: {
 
 class APILoader {
   mapKey: string;
-  hostAndPath: string;
+
+  constructor() {
+    this.mapKey = '';
+  }
 
   loadAMapUI = (params: LoadOption['AMapUI']): Promise<void> => {
     return new Promise((resolve, reject) => {
       const newPlugins: string[] = [];
-      if (params.plugins && params.plugins.length) {
+      if (params?.plugins && params.plugins.length) {
         params.plugins.forEach(item => {
           if (!config.AMapUI.plugins.includes(item)) {
             newPlugins.push(item);
@@ -124,7 +127,7 @@ class APILoader {
         })
       }
 
-      config.AMapUI.version = params.version || config.AMapUI.version;
+      config.AMapUI.version = params?.version || config.AMapUI.version;
       const version = config.AMapUI.version;
 
       switch (statusMap.Loca) {
@@ -133,7 +136,7 @@ class APILoader {
           break;
         case LoadStatus.notload:
           statusMap.AMapUI = LoadStatus.loading;
-          const scriptSrc = `//${this.hostAndPath}/ui/${version}/main.js`;
+          const scriptSrc = `//${config.hostAndPath}/ui/${version}/main.js`;
 
           requireScript(scriptSrc, 'amap_loca_api')
             .then(() => {
@@ -163,7 +166,7 @@ class APILoader {
             })
           break;
         case LoadStatus.loaded:
-          if (version && params.version !== config.AMapUI.version) {
+          if (version && params?.version !== config.AMapUI.version) {
             reject('不允许多个版本 AMapUI 混用');
           } else {
             if (newPlugins.length) {
@@ -180,7 +183,7 @@ class APILoader {
             }
           }
         case LoadStatus.loading:
-          if (params.version && params.version !== config.AMapUI.version) {
+          if (params?.version && params.version !== config.AMapUI.version) {
             reject('不允许多个版本 AMapUI 混用');
           } else {
               callbackMap.AMapUI.push((err: Error) => {
@@ -221,7 +224,7 @@ class APILoader {
         case LoadStatus.notload:
           statusMap.Loca = LoadStatus.loading;
 
-          const scriptSrc = `//${this.hostAndPath}/loca?v=${params.version}&key=${this.mapKey}`;
+          const scriptSrc = `//${config.hostAndPath}/loca?v=${params?.version}&key=${this.mapKey}`;
 
           requireScript(scriptSrc, 'amap_loca_api')
             .then(() => {
@@ -237,14 +240,14 @@ class APILoader {
             });
           break;
         case LoadStatus.loaded:
-          if (params.version && params.version !== config.Loca.version) {
+          if (params?.version && params.version !== config.Loca.version) {
             reject('不允许多个版本 Loca 混用');
           } else {
             resolve();
           }
           break;
         case LoadStatus.loading:
-          if (params.version && params.version !== config.Loca.version) {
+          if (params?.version && params.version !== config.Loca.version) {
             reject('不允许多个版本 Loca 混用');
           } else {
             callbackMap.Loca.push((err: Error) => {
@@ -302,7 +305,6 @@ class APILoader {
         case LoadStatus.notload:
           config.key = key || config.key;
           this.mapKey = config.key;
-          this.hostAndPath = hostAndPath || config.hostAndPath;
           config.AMap.version = version || config.AMap.version;
           config.AMap.plugins = plugins || config.AMap.plugins;
           statusMap.AMap = LoadStatus.loading;
@@ -326,7 +328,7 @@ class APILoader {
             }
           }
 
-          const scriptSrc = `//${this.hostAndPath}/maps?callback=__amap_init_callback&v=${config.AMap.version}&key=${that.mapKey}&plugin=${config.AMap.plugins.join(',')}`;
+          const scriptSrc = `//${config.hostAndPath}/maps?callback=__amap_init_callback&v=${config.AMap.version}&key=${that.mapKey}&plugin=${config.AMap.plugins.join(',')}`;
 
           requireScript(scriptSrc, 'amap_api')
             .catch(() => {
@@ -390,6 +392,7 @@ class APILoader {
   }
 
   reset() {
+    // @ts-ignore
     delete window.AMap;
     delete window.AMapUI;
     delete window.Loca;

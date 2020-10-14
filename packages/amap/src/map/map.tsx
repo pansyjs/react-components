@@ -30,13 +30,13 @@ const containerStyle: React.CSSProperties = {
 }
 
 const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, MapProps> = (props, ref) => {
-  const { className, style, children, ...rest } = props;
+  const { className, style, children, loading, ...rest } = props;
   const rootRef = useRef<HTMLDivElement>(null);
-  const { map, setContainer } = useMap({
+  const { map, AMap, loaded, setContainer } = useMap({
     container: rootRef.current as HTMLDivElement,
     ...rest
   });
-  useImperativeHandle(ref, () => ({ ...props, map, AMap, container: rootRef.current }), [map]);
+  useImperativeHandle(ref, () => ({ map, AMap }), [map]);
 
   useEffect(
     () => {
@@ -75,7 +75,11 @@ const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, MapProps> =
         ref={rootRef}
         className={className}
         style={containerStyle}
-      />
+      >
+        {
+          loaded && (loading || null)
+        }
+      </div>
       {(map && AMap) && (
         <>
          {typeof children === 'function' && children({ map, AMap })}
