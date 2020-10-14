@@ -29,14 +29,19 @@ const containerStyle: React.CSSProperties = {
   height: '100%'
 }
 
-const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, MapProps> = (props, ref) => {
+const InternalMap: React.ForwardRefRenderFunction<AMap.Map, MapProps> = (props, ref) => {
   const { className, style, children, loading, ...rest } = props;
   const rootRef = useRef<HTMLDivElement>(null);
   const { map, AMap, loaded, setContainer } = useMap({
     container: rootRef.current as HTMLDivElement,
     ...rest
   });
-  useImperativeHandle(ref, () => ({ map, AMap }), [map]);
+
+  useImperativeHandle(
+    ref,
+    () => map,
+    [map]
+  );
 
   useEffect(
     () => {
@@ -90,6 +95,4 @@ const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, MapProps> =
   )
 }
 
-const Map = React.forwardRef(InternalMap);
-
-export default Map;
+export default React.forwardRef(InternalMap);

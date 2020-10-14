@@ -12,8 +12,6 @@ type MouseToolType = React.ForwardRefRenderFunction<AMap.MouseTool, MouseToolPro
 const MouseTool: MouseToolType = (props, ref) => {
   const { mouseTool } = useMouseTool(props);
 
-  console.log(mouseTool);
-
   useImperativeHandle(
     ref,
     () => mouseTool as AMap.MouseTool,

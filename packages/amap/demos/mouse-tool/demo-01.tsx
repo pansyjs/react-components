@@ -4,6 +4,7 @@ import { Button, Space } from 'antd';
 import { Map, MouseTool } from '@pansy/react-amap';
 
 export default () => {
+  // 也可通过 onCreated 事件 获取MouseTool实例
   const mouseTool = useRef<AMap.MouseTool>();
 
   const handleDrawMarker = () => {
@@ -11,8 +12,6 @@ export default () => {
       mouseTool.current.marker();
     }
   }
-
-  console.log(mouseTool.current);
 
   return (
     <div>
@@ -28,6 +27,6 @@ export default () => {
         <Button >Draw Polygon</Button>
         <Button >Close</Button>
       </Space>
-     </div>
+    </div>
   )
 }
