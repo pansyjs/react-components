@@ -6,7 +6,7 @@ declare namespace AMap {
       /**
        * 鼠标工具绘制覆盖物结束时触发此事件，instance对象为绘制出来的覆盖物对象。
        */
-      draw: (type: string, instance: T) => void;
+      draw: (event: { type: string, obj: T }) => void;
     }
   }
 
