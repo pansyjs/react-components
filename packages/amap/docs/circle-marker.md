@@ -4,9 +4,8 @@ nav:
   title: 组件
   path: /components
 group:
-  path: /amap
-  title: '高德地图'
-  order: 30
+  path: /amap-overlay
+  title: '高德地图 - 覆盖物'
 ---
 
 ## CircleMarker 圆点标记

@@ -6,7 +6,6 @@ nav:
 group:
   path: /amap
   title: '高德地图'
-  order: 2
 ---
 
 ## MouseTool 组件

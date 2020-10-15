@@ -10,11 +10,11 @@ export interface MarkerProps extends
     visiable?: boolean;
   }
 
-type MarkerType = React.ForwardRefRenderFunction<{ marker?: AMap.Marker}, MarkerProps>;
+type MarkerType = React.ForwardRefRenderFunction<AMap.Marker, MarkerProps>;
 
 const Marker: MarkerType = (props, ref) => {
   const { marker } = useMarker(props);
-  useImperativeHandle(ref, () => ({ marker }));
+  useImperativeHandle(ref, () => (marker as AMap.Marker));
   return null;
 };
 

@@ -4,9 +4,8 @@ nav:
   title: 组件
   path: /components
 group:
-  path: /amap
-  title: '高德地图'
-  order: 20
+  path: /amap-overlay
+  title: '高德地图 - 覆盖物'
 ---
 
 ## Polygon 多边形组件

@@ -4,9 +4,9 @@ nav:
   title: 组件
   path: /components
 group:
-  path: /amap
-  title: '高德地图'
-  order: 3
+  path: /amap-info-window
+  title: '高德地图 - 信息窗体'
+  order: 70
 ---
 
 ##  InfoWindow 信息窗体

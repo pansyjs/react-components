@@ -4,9 +4,9 @@ nav:
   title: 组件
   path: /components
 group:
-  path: /amap
-  title: '高德地图'
-  order: 2
+  path: /amap-overlay
+  title: '高德地图 - 覆盖物'
+  order: 60
 ---
 
 ##  Marker 点标记组件
