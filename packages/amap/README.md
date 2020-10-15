@@ -32,3 +32,8 @@ npm install @pansy/react-amap --save
 // yarn
 yarn add @pansy/react-amap
 ```
+
+## ❤️ 感谢
+
+- [ElemeFE/react-amap](https://github.com/ElemeFE/react-amap)
+- [uiwjs/react-amap](https://github.com/uiwjs/react-amap)
