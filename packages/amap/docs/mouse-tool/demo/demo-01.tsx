@@ -4,7 +4,7 @@ import { Map, MouseTool } from '@pansy/react-amap';
 
 export default () => {
   // 也可通过 onCreated 事件 获取MouseTool实例
-  const mouseTool = useRef<AMap.MouseTool>();
+  const mouseTool = useRef<AMap.MouseTool>(null);
 
   const handleDraw = ({ obj }: any) => {
     switch(obj.CLASS_NAME) {
