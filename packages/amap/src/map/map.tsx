@@ -4,6 +4,7 @@ import { LoadOption } from '../utils/api-loader';
 import { MapEventMap, PositionType } from '../types/global';
 
 export type MapOptions = AMap.Map.Options;
+export type RenderProps = (value: { AMap: typeof AMap, map: AMap.Map }) => Element | React.ReactNode;
 
 export interface InternalMapProps extends
   Partial<Omit<MapOptions, 'center'>>,
@@ -11,6 +12,7 @@ export interface InternalMapProps extends
     className?: string;
     style?: React.CSSProperties;
     center?: PositionType;
+    children?: RenderProps | React.ReactNode;
   }
 
 export interface MapProps extends InternalMapProps {
@@ -87,7 +89,7 @@ const InternalMap: React.ForwardRefRenderFunction<AMap.Map, MapProps> = (props, 
       </div>
       {(map && AMap) && (
         <>
-         {typeof children === 'function' && children({ map, AMap })}
+         {typeof children === 'function' && (children as RenderProps)({ map, AMap })}
          {renderChildren()}
         </>
       )}

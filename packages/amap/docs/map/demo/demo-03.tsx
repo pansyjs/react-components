@@ -5,10 +5,10 @@ export default () => {
   return (
     <div style={{ width: '100%', height: 500 }}>
       <Map
-        onClick={(e) => {
+        onClick={() => {
           console.log('click event')
         }}
-        onDblClick={(e) => {
+        onDblClick={() => {
           console.log('dblClick event')
         }}
       />

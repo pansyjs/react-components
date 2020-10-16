@@ -34,7 +34,7 @@ interface Config {
 }
 
 export interface LoadOption {
-  key: string;
+  key?: string;
   version?: string;
   hostAndPath?: string;
   plugins?: string[];
