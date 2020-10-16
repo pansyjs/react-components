@@ -127,7 +127,7 @@ const useMap = (props: UseMap = {}): UseMapResult => {
     [zoom, props.zoom]
   );
 
-  const center = AMap && toLnglat(props?.center as AMap.LngLat);
+  const center = Amap && toLnglat(props?.center as AMap.LngLat);
 
   // 设置地图状态
   useSetStatus<AMap.Map.Status, AMap.Map, UseMap>(mapInstance!, props, mapStatus);

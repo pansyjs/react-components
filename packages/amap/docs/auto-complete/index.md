@@ -15,4 +15,4 @@ group:
 
 ### 简单使用
 
-<code src="../demos/demo-04.tsx" />
+<code src="./demo/demo-01.tsx" />

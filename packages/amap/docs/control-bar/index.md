@@ -1,5 +1,5 @@
 ---
-title: MapType 地图类型切换插件
+title: ControlBar 地图控件
 nav:
   title: 组件
   path: /components
@@ -8,10 +8,10 @@ group:
   title: '高德地图 - 控件'
 ---
 
-## MapType 地图类型切换插件
+## ControlBar 地图控件
 
 ## 代码示例
 
 ### 简单使用
 
-<code src="../demos/demo-11.tsx" />
+<code src="./demo/demo-01.tsx" />

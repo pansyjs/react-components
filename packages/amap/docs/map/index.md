@@ -24,23 +24,23 @@ Map 组件是其他组件的基础，其他地图组件必须作为 Map 的子�
 
 Map 的父组件必须具有宽度和高度；
 
-<code src="../demos/map/demo-01.tsx" />
+<code src="./demo/demo-01.tsx" />
 
 ### 事件绑定
 
-<code src="../demos/map/demo-03.tsx" />
+<code src="./demo/demo-03.tsx" />
 
 ### 在 Map 下添加自定义地图组件
 
-<code src="../demos/map/demo-02.tsx" />
+<code src="./demo/demo-02.tsx" />
 
 ### 地图加载过渡样式
 
-<code src="../demos/map/demo-04.tsx" />
+<code src="./demo/demo-04.tsx" />
 
 ### 加载 AMapUI 组件库
 
-<code src="../demos/map/demo-05.tsx" />
+<code src="./demo/demo-05.tsx" />
 
 ## API
 

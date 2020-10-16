@@ -1,5 +1,5 @@
 ---
-title: Circle 圆形组件
+title: CircleMarker 圆点标记
 nav:
   title: 组件
   path: /components
@@ -8,10 +8,10 @@ group:
   title: '高德地图 - 覆盖物'
 ---
 
-## Circle 圆形组件
+## CircleMarker 圆点标记
 
 ## 代码示例
 
 ### 简单使用
 
-<code src="../demos/demo-05.tsx" />
+<code src="./demo/demo-01.tsx" />

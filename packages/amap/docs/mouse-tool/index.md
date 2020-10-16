@@ -20,5 +20,5 @@ group:
 
 ### 基础用法
 
-<code src="../demos/mouse-tool/demo-01.tsx" />
+<code src="./demo/demo-01.tsx" />
 
