@@ -1,5 +1,5 @@
 ---
-title: Map 地图组件
+title: Map 地图
 nav:
   title: 组件
   path: /components
@@ -10,7 +10,7 @@ group:
   order: 1
 ---
 
-# Map 地图组件
+# Map 地图
 
 Map 组件是其他组件的基础，其他地图组件必须作为 Map 的子组件使用，Map 组件会给所有的子组件注入两个属性 `map`，`AMap`，在拥有访问这两个属性的能力后，就可以根据高德原生 API 做高德允许你做的一切事情。
 
