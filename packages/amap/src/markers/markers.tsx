@@ -1,5 +1,3 @@
-/// <reference types="../types/marker-clusterer" />
-
 import React from 'react';
 import { render } from 'react-dom';
 import { isFunction } from '../utils';

@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-// @ts-ignore
 import Player from '@pansy/react-aliplayer';
 
 const Example: FC = () => {

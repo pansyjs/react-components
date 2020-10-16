@@ -24,6 +24,7 @@ const useMouseTool = (props = {} as UseMouseTool) => {
     }
   }, [map]);
 
+  // @ts-ignore
   useEventProperties<AMap.MouseTool, UseMouseTool>(mouseTool!, props, eventNames);
 
   return {

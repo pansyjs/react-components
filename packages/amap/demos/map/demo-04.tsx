@@ -1,5 +1,4 @@
 import React from 'react';
-// @ts-ignore
 import { Map } from '@pansy/react-amap';
 
 const loadingStyle: React.CSSProperties = {

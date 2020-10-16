@@ -1,5 +1,4 @@
 import React from 'react';
-// @ts-ignore
 import { Map } from '@pansy/react-amap';
 import { MapChildProps } from '@pansy/react-amap/es/types/global';
 

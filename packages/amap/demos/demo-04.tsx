@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-// @ts-ignore
 import { Map, AutoComplete } from '@pansy/react-amap';
 
 // TODO: 在Map中无法获取到Input的ref

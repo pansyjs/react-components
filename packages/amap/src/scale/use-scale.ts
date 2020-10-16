@@ -13,7 +13,7 @@ function useScale(props = {} as UseScale) {
       let instance: AMap.Scale;
       map.plugin(['AMap.Scale'], () => {
         instance = new AMap.Scale({
-          // offset,
+          offset,
           position
         });
         console.log(instance);

@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import { Button, Space, message } from 'antd';
-// @ts-ignore
 import { Map, MouseTool } from '@pansy/react-amap';
 
 export default () => {

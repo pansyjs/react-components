@@ -1,5 +1,4 @@
 import React from 'react';
-// @ts-ignore
 import Watermark from '@pansy/react-watermark';
 
 export default () => {

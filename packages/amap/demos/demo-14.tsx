@@ -1,5 +1,4 @@
 import React from 'react';
-// @ts-ignore
 import { Map, ToolBar } from '@pansy/react-amap';
 
 export default () => {

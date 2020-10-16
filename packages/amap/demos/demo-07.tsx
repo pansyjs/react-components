@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// @ts-ignore
 import { Map, Polygon } from '@pansy/react-amap';
 
 export default () => {

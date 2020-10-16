@@ -13,7 +13,7 @@ function useToolBar(props = {} as UseToolBar) {
       let instance: AMap.ToolBar;
       map.plugin(['AMap.ToolBar'], () => {
         instance = new AMap.ToolBar({
-          // offset,
+          offset,
           position
         });
         console.log(instance);

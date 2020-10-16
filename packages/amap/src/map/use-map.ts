@@ -87,7 +87,7 @@ const eventNames: Keys<MapEventMap>[] = [
 const useMap = (props: UseMap = {}): UseMapResult => {
   const [loaded, setLoaded] = useState<boolean>(true);
   const [mapInstance, setMapInstance] = useState<AMap.Map>();
-  const [AMap, setAMap] = useState<AMap.Map>();
+  const [Amap, setAMap] = useState<typeof AMap>();
   const [zoom, setZoom] = useState(props.zoom || 15);
   const [container, setContainer] = useState<HTMLDivElement>(props.container as HTMLDivElement);
 
@@ -138,7 +138,7 @@ const useMap = (props: UseMap = {}): UseMapResult => {
 
   return {
     map: mapInstance as AMap.Map,
-    AMap: AMap as typeof window.AMap,
+    AMap: Amap as typeof AMap,
     loaded,
     setContainer,
   }

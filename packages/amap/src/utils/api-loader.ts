@@ -297,7 +297,7 @@ class APILoader {
     }
 
     return new Promise((resolve, reject) => {
-      const { key, version, plugins = [], hostAndPath } = options;
+      const { key, version, plugins = [] } = options;
       switch (statusMap.AMap) {
         case LoadStatus.failed:
           reject('上次请求 AMap 失败');
@@ -309,7 +309,7 @@ class APILoader {
           config.AMap.plugins = plugins || config.AMap.plugins;
           statusMap.AMap = LoadStatus.loading;
 
-          window.__amap_init_callback = function(error) {
+          window.__amap_init_callback = function(error?: Error) {
             delete window.__amap_init_callback;
 
             if (error) {

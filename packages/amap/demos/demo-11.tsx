@@ -1,5 +1,4 @@
 import React from 'react';
-// @ts-ignore
 import { Map, MapType } from '@pansy/react-amap';
 
 export default () => {

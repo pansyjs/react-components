@@ -1,3 +1,5 @@
+import '@pansy/amap-types';
+
 export { default as Map } from './map';
 
 // 覆盖物
