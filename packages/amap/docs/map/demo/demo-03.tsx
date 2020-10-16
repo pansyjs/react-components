@@ -5,6 +5,9 @@ export default () => {
   return (
     <div style={{ width: '100%', height: 500 }}>
       <Map
+        onCreated={(map) => {
+          console.log(map);
+        }}
         onClick={() => {
           console.log('click event')
         }}

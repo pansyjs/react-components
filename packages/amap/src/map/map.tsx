@@ -13,6 +13,7 @@ export interface InternalMapProps extends
     style?: React.CSSProperties;
     center?: PositionType;
     children?: RenderProps | React.ReactNode;
+    onCreated?: (map: AMap.Map) => void;
   }
 
 export interface MapProps extends InternalMapProps {

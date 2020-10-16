@@ -53,6 +53,7 @@ Map 的父组件必须具有宽度和高度；
 |loading| 地图加载中的UI | `React.ReactNode` | -- | -- |
 |options| 地图加载相关配置, 具体配置请看下面的 `Options` | `object` | -- | -- |
 |center|地图中心点坐标值|`LngLat` \| `[number, number]` \| `{ lng: number; lat: number }` \| `{ longitude: number, latitude: number }`| --| -- |
+|onCreated|地实实例创建回调|`(map: AMap.Map) => void`| -- | -- |
 |onComplete|地图资源加载完成后触发事件|`() => void`| -- | -- |
 |onClick|鼠标左键单击事件|`(event) => void`| -- | -- |
 |onRightClick|鼠标右键单击事件|`(event) => void`| -- | -- |
