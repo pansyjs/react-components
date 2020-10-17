@@ -6,7 +6,8 @@ export default () => {
     <div style={{ width: '100%', height: 500 }}>
       <Map
         onCreated={(map) => {
-          console.log(map);
+          // 获取地图实例
+          // console.log(map);
         }}
         onClick={() => {
           console.log('click event')

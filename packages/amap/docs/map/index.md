@@ -32,9 +32,21 @@ Map 的父组件必须具有宽度和高度；
 
 <code src="./demo/demo-03.tsx" />
 
+### 动态改变属性
+
+<code src="./demo/demo-07.tsx" />
+
+### 3D 模式地图
+
+<code src="./demo/demo-06.tsx" />
+
 ### 在 Map 下添加自定义地图组件
 
 <code src="./demo/demo-02.tsx" />
+
+### status 属性
+
+<code src="./demo/demo-08.tsx" />
 
 ### 地图加载过渡样式
 

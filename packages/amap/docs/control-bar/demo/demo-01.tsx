@@ -5,11 +5,9 @@ export default () => {
   return (
     <div>
       <div style={{width: '100%', height: 500}}>
-        <Map zoom={6}>
+        <Map zoom={14} pitch={70} viewMode="3D" center={[116.397637, 39.900001]}>
           <ControlBar
             visiable={true}
-            offset={[10, 10]}
-            position="RB"
           />
         </Map>
       </div>
