@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import { ControlBarProps } from './control-bar';
-import { useVisiable } from '../hooks';
 
 export interface UseControlBarControl extends ControlBarProps {}
 
 function useControlBar(props = {} as UseControlBarControl) {
   const [controlBar, setControlBar] = useState<AMap.ControlBar>();
-  const { map, position, visiable, showControlButton, showZoomBar } = props;
+  const { map, position, showControlButton, showZoomBar } = props;
 
   useEffect(() => {
     if (map && !controlBar) {
@@ -28,8 +27,6 @@ function useControlBar(props = {} as UseControlBarControl) {
 
     return () => {};
   }, [map]);
-
-  useVisiable(controlBar!, visiable);
 
   return {
     controlBar,

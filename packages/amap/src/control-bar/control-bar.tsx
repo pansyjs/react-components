@@ -4,13 +4,11 @@ import useControlBar from './use-control-bar';
 
 export interface ControlBarProps extends
   MapChildProps,
-  AMap.ControlBar.Options {
-    visiable?: boolean;
-  }
+  AMap.ControlBar.Options {}
 
 type ControlBarType = React.ForwardRefRenderFunction<AMap.ControlBar, ControlBarProps>;
 
-export const ControlBar: ControlBarType = (props, ref) => {
+const ControlBar: ControlBarType = (props, ref) => {
   const { controlBar } = useControlBar(props);
 
   useImperativeHandle(

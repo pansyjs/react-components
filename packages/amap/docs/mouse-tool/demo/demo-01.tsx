@@ -57,7 +57,7 @@ export default () => {
 
   return (
     <div>
-      <div style={{width: '100%', height: 370}}>
+      <div style={{ width: '100%', height: 500 }}>
         <Map>
           <MouseTool ref={mouseTool} onDraw={handleDraw} />
         </Map>
