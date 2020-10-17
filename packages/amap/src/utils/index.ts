@@ -1,4 +1,4 @@
-import { PositionType } from '../types/global';
+import { PositionType, OffsetType } from '../types/global';
 
 export const hasWindow = (typeof window !== 'undefined')
 
@@ -43,7 +43,7 @@ export const toLnglat = (position: PositionType) => {
  * 将偏移量转换为Pixel
  * @param offset
  */
-export const toPixel = (offset: PositionType) => {
+export const toPixel = (offset: OffsetType) => {
   if (!offset) {
     return offset
   }
@@ -59,5 +59,5 @@ export const toPixel = (offset: PositionType) => {
     x = offset['x'];
     y = offset['y'];
   }
-  return hasWindow ? new window.AMap.Pixel(x, y) : null
+  return hasWindow ? new window.AMap.Pixel(x, y) : undefined
 }

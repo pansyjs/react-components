@@ -1,22 +1,23 @@
 import { useEffect, useState } from 'react';
 import { ScaleProps } from './scale';
 import { useVisiable } from '../hooks';
+import { toPixel } from '../utils';
 
 export interface UseScale extends ScaleProps {}
 
 function useScale(props = {} as UseScale) {
   const [scale, setScale] = useState<AMap.Scale>();
-  const { map, position, visiable, offset } = props;
+  const { map, AMap, position, visiable } = props;
 
   useEffect(() => {
     if (map && !scale) {
       let instance: AMap.Scale;
       map.plugin(['AMap.Scale'], () => {
+        const pixel = getOffset();
         instance = new AMap.Scale({
-          offset,
+          offset: pixel,
           position
         });
-        console.log(instance);
         map.addControl(instance);
         setScale(instance);
       });
@@ -32,6 +33,10 @@ function useScale(props = {} as UseScale) {
   }, [map]);
 
   useVisiable(scale!, visiable);
+
+  const getOffset = () => {
+    return (scale && props?.offset) && toPixel(props?.offset as AMap.Pixel);
+  }
 
   return {
     scale, setScale

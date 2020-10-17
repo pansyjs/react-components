@@ -8,7 +8,7 @@ export default () => {
         <ToolBar
           visiable={true}
           offset={[60, 10]}
-          position="LT"
+          position="RB"
         />
       </Map>
     </div>

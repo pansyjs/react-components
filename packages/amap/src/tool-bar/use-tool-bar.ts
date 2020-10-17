@@ -1,30 +1,30 @@
 import { useEffect, useState } from 'react';
 import { ToolBarProps } from './tool-bar';
 import { useVisiable } from '../hooks';
+import { toPixel } from '../utils';
 
 export interface UseToolBar extends ToolBarProps {}
 
 function useToolBar(props = {} as UseToolBar) {
   const [toolBar, setToolBar] = useState<AMap.ToolBar>();
-  const { map, position, visiable, offset } = props;
+  const { map, AMap, visiable, ...rest } = props;
 
   useEffect(() => {
     if (map && !toolBar) {
       let instance: AMap.ToolBar;
       map.plugin(['AMap.ToolBar'], () => {
+        const pixel = getOffset();
         instance = new AMap.ToolBar({
-          offset,
-          position
+          ...rest,
+          offset: pixel
         });
-        console.log(instance);
+
         map.addControl(instance);
         setToolBar(instance);
       });
 
       return () => {
-        if (instance) {
-          map.removeControl(instance);
-        }
+        instance && map.removeControl(instance);
       }
     }
 
@@ -32,6 +32,10 @@ function useToolBar(props = {} as UseToolBar) {
   }, [map]);
 
   useVisiable(toolBar!, visiable);
+
+  const getOffset = () => {
+    return (toolBar && props?.offset) && toPixel(props?.offset as AMap.Pixel);
+  }
 
   return {
     toolBar, setToolBar

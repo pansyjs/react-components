@@ -20,4 +20,6 @@ export { default as Scale } from './scale';
 export { default as MapType } from './map-type';
 export { default as ToolBar } from './tool-bar';
 export { default as ControlBar } from './control-bar';
+export { default as OverView } from './over-view';
+
 export { default as MouseTool } from './mouse-tool';
