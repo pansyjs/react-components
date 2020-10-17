@@ -16,3 +16,7 @@ group:
 ### 简单使用
 
 <code src="./demo/demo-01.tsx" />
+
+### 简易缩放按钮
+
+<code src="./demo/demo-02.tsx" />

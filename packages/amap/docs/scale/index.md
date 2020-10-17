@@ -21,3 +21,5 @@ group:
 | 属性 |说明|类型|默认值|amap版本|
 |-----|----|----|----|----|
 |visiable| 是否显示 | `boolean` | `true` | -- |
+|offset| 相对于地图容器左上角的偏移量，正数代表向右下偏移。 | `[number, number]` \| `{ x: number; y: number; }` \| `AMap.Pixel` | `AMap.Pixel(10,10)` | -- |
+|position| 控件停靠位置 | `LT` \| `RT` \| `LB` \| `RB` | `LB` | -- |

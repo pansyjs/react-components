@@ -1,13 +1,12 @@
 import React from 'react';
-import { Map, OverView } from '@pansy/react-amap';
+import { Map, ToolBar } from '@pansy/react-amap';
 
 export default () => {
   return (
     <div style={{width: '100%', height: 500}}>
-      <Map zoom={6}>
-        <OverView
-          visiable={true}
-          isOpen
+      <Map>
+        <ToolBar
+          liteStyle
         />
       </Map>
     </div>
