@@ -6,27 +6,23 @@ export interface UseControlBarControl extends ControlBarProps {}
 
 function useControlBar(props = {} as UseControlBarControl) {
   const [controlBar, setControlBar] = useState<AMap.ControlBar>();
-  const { map, position, visiable } = props;
+  const { map, position, visiable, showControlButton, showZoomBar } = props;
 
   useEffect(() => {
-    console.log(map);
-    console.log(controlBar);
     if (map && !controlBar) {
       let instance: AMap.ControlBar;
-      map.plugin(['AMap.ControlBar', 'AMap.HawkEye'], () => {
+      map.plugin(['AMap.ControlBar'], () => {
         instance = new AMap.ControlBar({
-          // @ts-ignore
-          offset: props['offset'],
-          position
+          position,
+          showZoomBar,
+          showControlButton
         });
         map.addControl(instance);
         setControlBar(instance);
       });
 
       return () => {
-        if (instance) {
-          map.removeControl(instance);
-        }
+        instance && map.removeControl(instance);
       }
     }
 
@@ -36,7 +32,8 @@ function useControlBar(props = {} as UseControlBarControl) {
   useVisiable(controlBar!, visiable);
 
   return {
-    controlBar, setControlBar
+    controlBar,
+    setControlBar
   };
 }
 

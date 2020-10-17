@@ -89,7 +89,7 @@ const useMap = (props: UseMap = {}): UseMapResult => {
   const [loaded, setLoaded] = useState<boolean>(true);
   const [mapInstance, setMapInstance] = useState<AMap.Map>();
   const [aMapObj, setAMapObj] = useState<typeof AMap>();
-  const [zoom, setZoom] = useState(props.zoom || 15);
+  const [zoom, setZoom] = useState<number>(props.zoom || 15);
   const [container, setContainer] = useState<HTMLDivElement>(props.container as HTMLDivElement);
 
   useEffect(
@@ -98,7 +98,8 @@ const useMap = (props: UseMap = {}): UseMapResult => {
         new AMapLoader()
           .load(props.options)
           .then((AMap) => {
-            const map = new AMap.Map(container, { zoom, ...props } as AMap.Map.Options)
+            const lngLat = getCenter();
+            const map = new AMap.Map(container, { zoom, ...props, center: lngLat } as AMap.Map.Options)
             setAMapObj(AMap);
             setLoaded(false);
             setMapInstance(map);
@@ -130,12 +131,16 @@ const useMap = (props: UseMap = {}): UseMapResult => {
     [zoom, props.zoom]
   );
 
-  const center = aMapObj && toLnglat(props?.center as AMap.LngLat);
+  const getCenter = () => {
+    return (mapInstance && props?.center) && toLnglat(props?.center as AMap.LngLat);
+  }
+
+  const lnglat = getCenter();
 
   // 设置地图状态
   useSetStatus<AMap.Map.Status, AMap.Map, UseMap>(mapInstance!, props, mapStatus);
   // 设置地图受控属性
-  useSetProperties<AMap.Map, UseMap>(mapInstance!, { ...props, center }, properties);
+  useSetProperties<AMap.Map, UseMap>(mapInstance!, { ...props, center: lnglat }, properties);
   // 绑定事件
   useEventProperties<AMap.Map, UseMap>(mapInstance!, props, eventNames);
 

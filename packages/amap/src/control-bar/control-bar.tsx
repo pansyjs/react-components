@@ -8,11 +8,17 @@ export interface ControlBarProps extends
     visiable?: boolean;
   }
 
-type ControlBarType = React.ForwardRefRenderFunction<{ controlBar?: AMap.ControlBar }, ControlBarProps>;
+type ControlBarType = React.ForwardRefRenderFunction<AMap.ControlBar, ControlBarProps>;
 
 export const ControlBar: ControlBarType = (props, ref) => {
   const { controlBar } = useControlBar(props);
-  useImperativeHandle(ref, () => ({ controlBar }), [controlBar]);
+
+  useImperativeHandle(
+    ref,
+    () => (controlBar as AMap.ControlBar),
+    [controlBar]
+  );
+
   return null;
 };
 
