@@ -2,7 +2,7 @@
 
 <h4 align="center">高德地图组件<h4>
 
-`@pansy/react-amap` 是一个基于 React 封装的高德地图组件；帮助你轻松的接入地图到 React 项目中。除了必须引用的 Map 组件外，我们目前提供了常用一些地图组件，能够基本满足大部分的业务场景。
+基于 React 封装的高德地图组件；帮助你轻松的接入地图到 React 项目中。除了必须引用的 Map 组件外，我们目前提供了常用一些地图组件，能够基本满足大部分的业务场景。
 
 [![NPM version](https://img.shields.io/npm/v/@pansy/react-amap.svg?style=flat)](https://npmjs.org/package/@pansy/react-amap)
 [![NPM downloads](http://img.shields.io/npm/dm/@pansy/react-amap.svg?style=flat)](https://npmjs.org/package/@pansy/react-amap)
