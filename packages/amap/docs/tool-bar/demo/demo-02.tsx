@@ -7,6 +7,7 @@ export default () => {
       <Map>
         <ToolBar
           liteStyle
+          position="RT"
         />
       </Map>
     </div>

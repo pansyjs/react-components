@@ -12,16 +12,14 @@ function useToolBar(props = {} as UseToolBar) {
   useEffect(() => {
     if (map && !toolBar) {
       let instance: AMap.ToolBar;
-      map.plugin(['AMap.ToolBar'], () => {
-        const pixel = getOffset();
-        instance = new AMap.ToolBar({
-          ...rest,
-          offset: pixel
-        });
 
-        map.addControl(instance);
-        setToolBar(instance);
-      });
+      if (AMap?.ToolBar) {
+        instance = createToolBar();
+      } else {
+        map.plugin(['AMap.ToolBar'], () => {
+          instance = createToolBar();
+        });
+      }
 
       return () => {
         instance && map.removeControl(instance);
@@ -32,6 +30,20 @@ function useToolBar(props = {} as UseToolBar) {
   }, [map]);
 
   useVisiable(toolBar!, visiable);
+
+  const createToolBar = () => {
+    console.log(rest);
+    const pixel = getOffset();
+    const instance = new AMap.ToolBar({
+      ...rest,
+      offset: pixel
+    });
+
+    map?.addControl(instance);
+    setToolBar(instance);
+
+    return instance;
+  }
 
   const getOffset = () => {
     return (toolBar && props?.offset) && toPixel(props?.offset as AMap.Pixel);
