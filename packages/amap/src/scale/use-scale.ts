@@ -35,7 +35,7 @@ function useScale(props = {} as UseScale) {
   useVisible(scale!, visible);
 
   const getOffset = () => {
-    return (scale && props?.offset) && toPixel(props?.offset as AMap.Pixel);
+    return toPixel(props?.offset as AMap.Pixel);
   }
 
   return {
