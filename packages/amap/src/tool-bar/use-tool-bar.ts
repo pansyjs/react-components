@@ -46,7 +46,7 @@ function useToolBar(props = {} as UseToolBar) {
   }
 
   const getOffset = () => {
-    return (toolBar && props?.offset) && toPixel(props?.offset as AMap.Pixel);
+    return toPixel(props?.offset as AMap.Pixel);
   }
 
   return {

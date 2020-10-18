@@ -44,9 +44,7 @@ export const toLnglat = (position: PositionType) => {
  * @param offset
  */
 export const toPixel = (offset: OffsetType) => {
-  if (!offset) {
-    return offset
-  }
+  offset = offset || [0, 0]
   if ('getX' in offset && 'getY' in offset) {
     return offset
   }
