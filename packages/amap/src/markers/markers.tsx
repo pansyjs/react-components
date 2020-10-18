@@ -32,7 +32,7 @@ export interface ClustererOptions extends AMap.MarkerClusterer.Options {
 }
 
 export interface MarkersProps extends MapChildProps {
-  visiable?: boolean;
+  visible?: boolean;
   /**
    * 是否启用标记点聚合插件；如果是MarkerClustererOptions对象，表明启用
    */

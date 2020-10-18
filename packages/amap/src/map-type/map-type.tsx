@@ -4,7 +4,7 @@ import useMapType from './use-map-type';
 
 export interface MapTypeProps
   extends MapChildProps, AMap.MapType.Options {
-    visiable?: boolean;
+    visible?: boolean;
   }
 
 type MapTypeType = React.ForwardRefRenderFunction<AMap.MapType, MapTypeProps>;

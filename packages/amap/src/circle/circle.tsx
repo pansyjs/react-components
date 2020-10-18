@@ -5,7 +5,7 @@ import { MapChildProps, PositionType } from '../types/global';
 export interface CircleProps extends
   MapChildProps,
   AMap.Circle.Options {
-    visiable?: boolean;
+    visible?: boolean;
     location?: PositionType;
   }
 

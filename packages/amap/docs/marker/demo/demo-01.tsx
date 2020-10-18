@@ -10,8 +10,8 @@ export default () => {
       </button>
       <div style={{ width: '100%', height: '300px' }}>
         <Map zoom={4}>
-          <Marker visiable={show} title="北京市" position={[116.405285, 39.904989]} />
-          <Marker visiable={show} title="天津市" position={[117.190182, 39.125596]} />
+          <Marker visible={show} title="北京市" position={[116.405285, 39.904989]} />
+          <Marker visible={show} title="天津市" position={[117.190182, 39.125596]} />
         </Map>
       </div>
     </>

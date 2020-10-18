@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { ToolBarProps } from './tool-bar';
-import { useVisiable } from '../hooks';
+import { useVisible } from '../hooks';
 import { toPixel } from '../utils';
 
 export interface UseToolBar extends ToolBarProps {}
 
 function useToolBar(props = {} as UseToolBar) {
   const [toolBar, setToolBar] = useState<AMap.ToolBar>();
-  const { map, AMap, visiable, ...rest } = props;
+  const { map, AMap, visible, ...rest } = props;
 
   useEffect(() => {
     if (map && !toolBar) {
@@ -29,7 +29,7 @@ function useToolBar(props = {} as UseToolBar) {
     return () => {};
   }, [map]);
 
-  useVisiable(toolBar!, visiable);
+  useVisible(toolBar!, visible);
 
   const createToolBar = () => {
     console.log(rest);

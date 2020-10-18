@@ -6,7 +6,7 @@ export interface AutoCompleteProps extends
   MapChildProps,
   Partial<AutoCompleteEventMap>,
   AMap.Autocomplete.Options {
-    visiable?: boolean;
+    visible?: boolean;
   }
 
 type AutoCompleteType = React.ForwardRefRenderFunction<{ autoComplete?: AMap.Autocomplete}, AutoCompleteProps>;

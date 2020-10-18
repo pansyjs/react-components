@@ -13,7 +13,7 @@ export default() => {
       <div style={{ width: '100%', height: '500px' }}>
         <Map zoom={14} pitch={70} viewMode="3D" center={[116.397637, 39.900001]}>
           <InfoWindow
-            visiable={show}
+            visible={show}
             content={content}
           />
         </Map>

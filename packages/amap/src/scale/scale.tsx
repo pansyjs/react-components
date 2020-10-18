@@ -7,7 +7,7 @@ export type ScaleOptions = AMap.Scale.Options;
 export interface ScaleProps extends
   MapChildProps,
   Omit<ScaleOptions, 'offset'> {
-    visiable?: boolean;
+    visible?: boolean;
     offset?: OffsetType;
   }
 

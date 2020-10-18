@@ -12,7 +12,7 @@ export default () => {
       <div style={{ width: '100%', height: '300px' }}>
         <Map zoom={14} center={[116.400274, 39.905812]}>
           <Circle
-            visiable={show}
+            visible={show}
             radius={1000}
             strokeColor="#fff"
             strokeWeight={2}

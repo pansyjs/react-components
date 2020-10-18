@@ -6,7 +6,7 @@ export type ToolBarOptions = AMap.ToolBar.Options;
 
 export interface ToolBarProps
   extends MapChildProps, Omit<ToolBarOptions, 'offset'> {
-    visiable?: boolean;
+    visible?: boolean;
     offset?: OffsetType;
   }
 

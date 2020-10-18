@@ -6,7 +6,7 @@ export default () => {
     <div style={{width: '100%', height: 500}}>
       <Map zoom={6}>
         <ToolBar
-          visiable={true}
+          visible={true}
           offset={[60, 10]}
           position="RB"
         />
