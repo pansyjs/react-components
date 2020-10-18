@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { CircleMarkerProps } from './circle-marker';
-import { useVisiable, useEventProperties, useSetProperties } from '../hooks';
+import { useVisible, useEventProperties, useSetProperties } from '../hooks';
 import { Keys, InfoWindowEventMap, PositionType } from '../types/global';
 import { toLnglat } from '../utils';
 
@@ -25,7 +25,7 @@ const properties: string[] = [
 const eventNames: Keys<InfoWindowEventMap>[] = []
 
 const useCircleMarker = (props = {} as UseCircleMarker) => {
-  const { map, visiable, center, ...rest } = props;
+  const { map, visible, center, ...rest } = props;
   const [circleMarker, setCircleMarker] = useState<AMap.CircleMarker>();
 
   const lnglat = toLnglat(center as PositionType);
@@ -45,7 +45,7 @@ const useCircleMarker = (props = {} as UseCircleMarker) => {
     return () => {}
   }, [map]);
 
-  useVisiable(circleMarker!, visiable);
+  useVisible(circleMarker!, visible);
   useSetProperties<AMap.CircleMarker, UseCircleMarker>(circleMarker!, props, properties);
   useEventProperties<AMap.CircleMarker, UseCircleMarker>(circleMarker!, props, eventNames);
 

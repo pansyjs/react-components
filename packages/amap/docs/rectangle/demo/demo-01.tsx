@@ -15,7 +15,7 @@ export default () => {
       <div style={{ width: '100%', height: '300px' }}>
         <Map zoom={4}>
           <Rectangle
-            visiable={show}
+            visible={show}
             // bounds={bounds}
             strokeColor="red"
             strokeWeight={6}

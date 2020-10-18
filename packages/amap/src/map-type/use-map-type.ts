@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { MapTypeProps } from './map-type';
-import { useVisiable } from '../hooks';
+import { useVisible } from '../hooks';
 
 export interface UseMapType extends MapTypeProps {}
 
 function useMapType(props = {} as UseMapType) {
   const [mapType, setMapType] = useState<AMap.MapType>();
-  const { map, visiable, defaultType = 0, ...other } = props;
+  const { map, visible, defaultType = 0, ...other } = props;
 
   useEffect(() => {
     if (map && !mapType) {
@@ -27,7 +27,7 @@ function useMapType(props = {} as UseMapType) {
     return () => {};
   }, [map]);
 
-  useVisiable(mapType!, visiable);
+  useVisible(mapType!, visible);
 
   return {
     mapType, setMapType,

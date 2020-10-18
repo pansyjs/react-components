@@ -7,7 +7,7 @@ export interface MarkerProps extends
   AMap.Marker.Options,
   MarkerEventMap {
     location?: PositionType;
-    visiable?: boolean;
+    visible?: boolean;
   }
 
 type MarkerType = React.ForwardRefRenderFunction<AMap.Marker, MarkerProps>;

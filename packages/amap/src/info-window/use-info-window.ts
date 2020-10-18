@@ -20,8 +20,8 @@ const eventNames: Keys<InfoWindowEventMap>[] = [
 ]
 
 const useInfoWindow = (props = {} as UseInfoWindow) => {
-  const { map, visiable, ...other } = props;
-  const [isOpen, setIsOpen] = useState(visiable);
+  const { map, visible, ...other } = props;
+  const [isOpen, setIsOpen] = useState(visible);
   const [infoWindow, setInfoWindow] = useState<AMap.InfoWindow>();
 
   const position = toLnglat(props.position as PositionType);
@@ -47,16 +47,16 @@ const useInfoWindow = (props = {} as UseInfoWindow) => {
   }, [map]);
 
   useMemo(() => {
-    if (isOpen !== visiable && infoWindow && map) {
-      setIsOpen(visiable);
-      if (visiable) {
+    if (isOpen !== visible && infoWindow && map) {
+      setIsOpen(visible);
+      if (visible) {
         const positionCenter = map.getCenter();
         infoWindow.open(map, position || positionCenter);
       } else {
         infoWindow.close();
       }
     }
-  }, [visiable, infoWindow]);
+  }, [visible, infoWindow]);
 
   useSetProperties<AMap.InfoWindow, UseInfoWindow>(infoWindow!, props, properties);
   useEventProperties<AMap.InfoWindow, UseInfoWindow>(infoWindow!, props, eventNames);

@@ -5,7 +5,7 @@ import { MapChildProps } from '../types/global';
 export interface PolygonProps extends
   MapChildProps,
   AMap.Polygon.Options {
-    visiable?: boolean;
+    visible?: boolean;
   }
 
 type PolygonType = React.ForwardRefRenderFunction<{ polygon?: AMap.Polygon}, PolygonProps>;

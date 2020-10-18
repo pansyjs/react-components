@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { OverViewProps } from './over-view';
-import { useVisiable } from '../hooks';
+import { useVisible } from '../hooks';
 import { toPixel } from '../utils';
 
 export interface UseOverView extends OverViewProps {}
 
 function useOverView(props = {} as UseOverView) {
   const [overView, setOverView] = useState<AMap.OverView>();
-  const { map, AMap, visiable, ...rest } = props;
+  const { map, AMap, visible, ...rest } = props;
 
   useEffect(() => {
     if (map && !overView) {
@@ -32,7 +32,7 @@ function useOverView(props = {} as UseOverView) {
     return () => {};
   }, [map]);
 
-  useVisiable(overView!, visiable);
+  useVisible(overView!, visible);
 
   const getOffset = () => {
     return (overView && props?.offset) && toPixel(props?.offset as AMap.Pixel);

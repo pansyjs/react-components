@@ -6,7 +6,7 @@ export default () => {
     <div style={{width: '100%', height: 500}}>
       <Map zoom={6}>
         <OverView
-          visiable={true}
+          visible={true}
           isOpen
         />
       </Map>

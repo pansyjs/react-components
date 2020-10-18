@@ -5,7 +5,7 @@ import { MapChildProps } from '../types/global';
 export interface RectangleProps extends
   MapChildProps,
   AMap.Rectangle.Options {
-    visiable?: boolean;
+    visible?: boolean;
   }
 
 type RectangleType = React.ForwardRefRenderFunction<{ rectangle?: AMap.Rectangle}, RectangleProps>;

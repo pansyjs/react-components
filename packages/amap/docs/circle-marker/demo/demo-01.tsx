@@ -12,7 +12,7 @@ export default () => {
         <Map zoom={4} center={[116.400274, 39.905812]}>
           <CircleMarker
             center={[116.407394, 39.904211]}
-            visiable={show}
+            visible={show}
             radius={10+Math.random()*10}
             strokeColor="#fff"
             strokeWeight={2}
@@ -26,7 +26,7 @@ export default () => {
           />
            <CircleMarker
             center={[113.26641, 23.132324]}
-            visiable={show}
+            visible={show}
             radius={10+Math.random()*10}
             strokeColor="#fff"
             strokeWeight={2}
@@ -40,7 +40,7 @@ export default () => {
           />
            <CircleMarker
             center={[112.562678, 37.873499]}
-            visiable={show}
+            visible={show}
             radius={10+Math.random()*10}
             strokeColor="#fff"
             strokeWeight={2}
@@ -54,7 +54,7 @@ export default () => {
           />
            <CircleMarker
             center={[121.473662, 31.230372]}
-            visiable={show}
+            visible={show}
             radius={10+Math.random()*10}
             strokeColor="#fff"
             strokeWeight={2}
@@ -68,7 +68,7 @@ export default () => {
           />
            <CircleMarker
             center={[117.329949, 31.733806]}
-            visiable={show}
+            visible={show}
             radius={10+Math.random()*10}
             strokeColor="#fff"
             strokeWeight={2}

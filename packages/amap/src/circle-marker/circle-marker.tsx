@@ -5,7 +5,7 @@ import { MapChildProps } from '../types/global';
 export interface CircleMarkerProps extends
   MapChildProps,
   AMap.CircleMarker.Options {
-    visiable?: boolean;
+    visible?: boolean;
   }
 
 type CircleMarkerType = React.ForwardRefRenderFunction<{ circleMarker?: AMap.CircleMarker}, CircleMarkerProps>;

@@ -7,7 +7,7 @@ export type OverViewOptions = AMap.OverView.Options;
 export interface OverViewProps extends
   MapChildProps,
   Omit<OverViewOptions, 'offset'> {
-    visiable?: boolean;
+    visible?: boolean;
     offset?: OffsetType;
   }
 

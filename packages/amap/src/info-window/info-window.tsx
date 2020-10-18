@@ -7,7 +7,7 @@ export interface InfoWindowProps extends
   Partial<InfoWindowEventMap>,
   AMap.InfoWindow.Options {
     location?: PositionType;
-    visiable?: boolean;
+    visible?: boolean;
   }
 
 type InfoWindowType = React.ForwardRefRenderFunction<{ infoWindow?: AMap.InfoWindow}, InfoWindowProps>;
