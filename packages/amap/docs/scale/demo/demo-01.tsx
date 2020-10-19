@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import { Map, Scale } from '@pansy/react-amap';
 
 export default () => {
-  const [visible, setvisible] = useState<boolean>(true);
+  const [visible, setVisible] = useState<boolean>(true);
 
   return (
     <div>
@@ -11,11 +11,12 @@ export default () => {
         <Map>
           <Scale
             visible={visible}
+            position="RB"
           />
         </Map>
       </div>
 
-      <Button onClick={() => setvisible(!visible)}>
+      <Button onClick={() => setVisible(!visible)}>
         {visible ? '关闭' : '开启'}
       </Button>
     </div>

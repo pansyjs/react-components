@@ -24,7 +24,7 @@ function useSetProperties<T, F = {}>(
           setState(props[propertie]);
         }
       }
-    }, [instance, JSON.stringify(props[propertie])]);
+    }, [instance, props[propertie]]);
   });
 }
 

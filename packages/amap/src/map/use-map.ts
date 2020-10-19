@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { MapProps } from './map';
 import { useSetStatus, useSetProperties, useEventProperties } from '../hooks';
 import { Keys, MapEventMap } from '../types/global';
@@ -131,9 +131,12 @@ const useMap = (props: UseMap = {}): UseMapResult => {
     [zoom, props.zoom]
   );
 
-  const getCenter = () => {
-    return (mapInstance && props?.center) && toLnglat(props?.center as AMap.LngLat);
-  }
+  const getCenter = useCallback(
+    () => {
+      return (mapInstance && props?.center) && toLnglat(props?.center as AMap.LngLat);
+    },
+    [props?.center]
+  );
 
   const lnglat = getCenter();
 

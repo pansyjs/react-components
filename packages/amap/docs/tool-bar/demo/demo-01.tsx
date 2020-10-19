@@ -7,8 +7,7 @@ export default () => {
       <Map zoom={6}>
         <ToolBar
           visible={true}
-          offset={[60, 10]}
-          position="RB"
+          position="LT"
         />
       </Map>
     </div>
