@@ -11,8 +11,16 @@ group:
 
 ##  Marker 点标记组件
 
+## 何时使用
+
+-  显示单个坐标点的时候使用
+
 ## 代码示例
 
 ### 简单使用
 
 <code src="./demo/demo-01.tsx" />
+
+## 动态更改 Marker 属性
+
+<code src="./demo/demo-02.tsx" />

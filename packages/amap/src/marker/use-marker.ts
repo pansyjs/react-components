@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { MarkerProps } from './marker';
 import { useVisible, useEventProperties, useSetProperties } from '../hooks';
 import { Keys, MarkerEventMap } from '../types/global';
@@ -50,14 +50,19 @@ const eventNames: Keys<MarkerEventMap>[] = [
 ];
 
 const useMarker = (props = {} as UseMarker) => {
-  const { map, AMap, visible, position, ...rest } = props;
+  const { map, AMap, visible, ...rest } = props;
   const [marker, setMarker] = useState<AMap.Marker>();
 
-  const lnglat = toLnglat(position as AMap.LngLat);
+  const position = useMemo(
+    () => {
+      return toLnglat(props?.position as AMap.LngLat)
+    },
+    [props?.position]
+  );
 
   useEffect(() => {
     if (!marker && AMap && map) {
-      const instance = new AMap.Marker({ ...rest, position: lnglat });
+      const instance = new AMap.Marker({ ...rest, position });
       map.add(instance);
       setMarker(instance);
 
@@ -73,7 +78,7 @@ const useMarker = (props = {} as UseMarker) => {
   }, [map]);
 
   useVisible(marker!, visible);
-  useSetProperties<AMap.Marker, UseMarker>(marker!, { ...props, location: lnglat }, properties);
+  useSetProperties<AMap.Marker, UseMarker>(marker!, { ...props, position: position as AMap.LngLat }, properties);
   useEventProperties<AMap.Marker, UseMarker>(marker!, props, eventNames);
 
   return {
