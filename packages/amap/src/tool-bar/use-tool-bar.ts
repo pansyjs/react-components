@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { ToolBarProps } from './tool-bar';
 import { useVisible } from '../hooks';
 import { toPixel } from '../utils';
@@ -45,9 +45,12 @@ function useToolBar(props = {} as UseToolBar) {
     return instance;
   }
 
-  const getOffset = () => {
-    return toPixel(props?.offset as AMap.Pixel);
-  }
+  const getOffset = useCallback(
+    () => {
+      return toPixel(props?.offset as AMap.Pixel);
+    },
+    [props?.offset]
+  )
 
   return {
     toolBar, setToolBar

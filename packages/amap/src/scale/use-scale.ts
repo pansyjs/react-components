@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { ScaleProps } from './scale';
 import { useVisible } from '../hooks';
 import { toPixel } from '../utils';
@@ -34,9 +34,12 @@ function useScale(props = {} as UseScale) {
 
   useVisible(scale!, visible);
 
-  const getOffset = () => {
-    return toPixel(props?.offset as AMap.Pixel);
-  }
+  const getOffset = useCallback(
+    () => {
+      return toPixel(props?.offset as AMap.Pixel);
+    },
+    [props?.offset]
+  )
 
   return {
     scale, setScale
