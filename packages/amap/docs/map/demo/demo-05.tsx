@@ -1,8 +1,7 @@
 import React from 'react';
 import { Map } from '@pansy/react-amap';
-import { MapChildProps } from '@pansy/react-amap/es/types/global';
 
-class UIMarker extends React.Component<MapChildProps> {
+class UIMarker extends React.Component<AMap.MapChildProps> {
   componentDidMount() {
     window.AMapUI.loadUI(['overlay/SimpleMarker'], (SimpleMarker: any) => {
       this.initPage(SimpleMarker);

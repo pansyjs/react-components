@@ -1,11 +1,13 @@
+/// <reference types="../types" />
+
 import { useState, useEffect } from 'react';
 import { MouseToolProps } from './mouse-tool';
 import { useEventProperties } from '../hooks';
-import { Keys, MouseToolEventMap } from '../types/global';
+import { Keys } from '../types/global';
 
 export interface UseMouseTool extends MouseToolProps {}
 
-const eventNames: Keys<MouseToolEventMap>[] = [
+const eventNames: Keys<AMap.MouseToolEventMap>[] = [
   'onDraw'
 ]
 

@@ -1,9 +1,8 @@
 import React from 'react';
 import { Button } from 'antd';
 import { Map } from '@pansy/react-amap';
-import { MapChildProps } from '@pansy/react-amap/es/types/global';
 
-const MyMapComponent: React.FC<MapChildProps> = ({ map }) => {
+const MyMapComponent: React.FC<AMap.MapChildProps> = ({ map }) => {
   if (!map) {
     console.log('组件必须作为 Map 的子组件使用');
     return null;

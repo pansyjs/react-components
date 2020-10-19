@@ -1,9 +1,10 @@
+/// <reference types="../types" />
+
 import React, { useImperativeHandle } from 'react';
 import useMouseTool from './use-mouse-tool';
-import { MapChildProps, MouseToolEventMap } from '../types/global';
 
 export interface MouseToolProps
-  extends MapChildProps, MouseToolEventMap {
+  extends AMap.MapChildProps, AMap.MouseToolEventMap {
     onCreated?: (mouseTool: AMap.MouseTool) => void;
   };
 

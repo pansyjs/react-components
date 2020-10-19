@@ -5,10 +5,9 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
 import { Map } from '@pansy/react-amap';
-import { PositionType } from '@pansy/react-amap/es/types/global';
 
 export default () => {
-  const [center, setCenter] = useState<PositionType>({ longitude: 115, latitude: 30 });
+  const [center, setCenter] = useState<AMap.PositionType>({ longitude: 115, latitude: 30 });
 
   const handleChangeCenter = () => {
     setCenter({

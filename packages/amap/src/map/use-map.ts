@@ -1,7 +1,9 @@
+/// <reference types="../types" />
+
 import { useEffect, useState, useCallback } from 'react';
 import { MapProps } from './map';
 import { useSetStatus, useSetProperties, useEventProperties } from '../hooks';
-import { Keys, MapEventMap } from '../types/global';
+import { Keys } from '../types/global';
 import AMapLoader from '../utils/api-loader';
 import { toLnglat } from '../utils';
 
@@ -53,7 +55,7 @@ const properties: string[] = [
 ];
 
 // AMap.Map.EventMap
-const eventNames: Keys<MapEventMap>[] = [
+const eventNames: Keys<AMap.MapEventMap>[] = [
   'onClick',
   'onDblClick',
   'onRightClick',

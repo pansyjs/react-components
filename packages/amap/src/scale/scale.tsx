@@ -1,14 +1,15 @@
+/// <reference types="../types" />
+
 import React, { useImperativeHandle } from 'react';
-import { MapChildProps, OffsetType } from '../types/global';
 import useScale from './use-scale';
 
 export type ScaleOptions = AMap.Scale.Options;
 
 export interface ScaleProps extends
-  MapChildProps,
+  AMap.MapChildProps,
   Omit<ScaleOptions, 'offset'> {
     visible?: boolean;
-    offset?: OffsetType;
+    offset?: AMap.OffsetType;
   }
 
 type ScaleType = React.ForwardRefRenderFunction<AMap.Scale, ScaleProps>;

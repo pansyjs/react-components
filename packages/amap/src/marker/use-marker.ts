@@ -1,7 +1,9 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+/// <reference types="../types" />
+
+import { useState, useEffect, useMemo } from 'react';
 import { MarkerProps } from './marker';
 import { useVisible, useEventProperties, useSetProperties } from '../hooks';
-import { Keys, MarkerEventMap } from '../types/global';
+import { Keys } from '../types/global';
 import { toLnglat } from '../utils';
 
 export interface UseMarker extends MarkerProps {}
@@ -29,7 +31,7 @@ const properties: string[] = [
 ];
 
 // AMap.Marker.EventMap
-const eventNames: Keys<MarkerEventMap>[] = [
+const eventNames: Keys<AMap.MarkerEventMap>[] = [
   'onClick',
   'onDblClick',
   'onRightClick',

@@ -1,12 +1,15 @@
+/// <reference types="../types" />
+
 import React, { useImperativeHandle } from 'react';
 import useCircle from './use-circle';
-import { MapChildProps, PositionType } from '../types/global';
+
+export type CircleOptions = AMap.Circle.Options;
 
 export interface CircleProps extends
-  MapChildProps,
-  AMap.Circle.Options {
+  AMap.MapChildProps,
+  CircleOptions {
     visible?: boolean;
-    location?: PositionType;
+    location?: AMap.PositionType;
   }
 
 type CircleType = React.ForwardRefRenderFunction<{ circle?: AMap.Circle}, CircleProps>;

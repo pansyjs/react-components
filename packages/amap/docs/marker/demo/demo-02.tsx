@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Space } from 'antd';
 import { Map, Marker } from '@pansy/react-amap';
-import { PositionType } from '@pansy/react-amap/es/types/global';
 
 export default () => {
   const [visible, setVisible] = useState<boolean>(true);
   const [clickable, setClickable] = useState<boolean>(false);
   const [draggable, setDraggable] = useState<boolean>(false);
-  const [position, setPosition] = useState<PositionType>({ longitude: 120, latitude: 35 });
+  const [position, setPosition] = useState<AMap.PositionType>({ longitude: 120, latitude: 35 });
 
   return (
     <>

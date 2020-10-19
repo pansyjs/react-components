@@ -1,17 +1,18 @@
+/// <reference types="../types" />
+
 import React, { useEffect, useRef, useImperativeHandle } from 'react';
 import useMap from './use-map';
 import { LoadOption } from '../utils/api-loader';
-import { MapEventMap, PositionType } from '../types/global';
 
 export type MapOptions = AMap.Map.Options;
 export type RenderProps = (value: { AMap: typeof AMap, map: AMap.Map }) => Element | React.ReactNode;
 
 export interface InternalMapProps extends
   Partial<Omit<MapOptions, 'center'>>,
-  Partial<MapEventMap> {
+  Partial<AMap.MapEventMap> {
     className?: string;
     style?: React.CSSProperties;
-    center?: PositionType;
+    center?: AMap.PositionType;
     children?: RenderProps | React.ReactNode;
     onCreated?: (map: AMap.Map) => void;
   }

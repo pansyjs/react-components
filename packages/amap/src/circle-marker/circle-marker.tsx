@@ -1,10 +1,13 @@
+/// <reference types="../types" />
+
 import React, { useImperativeHandle } from 'react';
 import useCircleMarker from './use-circle-marker';
-import { MapChildProps } from '../types/global';
+
+export type CircleMarkerOptions = AMap.CircleMarker.Options;
 
 export interface CircleMarkerProps extends
-  MapChildProps,
-  AMap.CircleMarker.Options {
+  AMap.MapChildProps,
+  CircleMarkerOptions {
     visible?: boolean;
   }
 

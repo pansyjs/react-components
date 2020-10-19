@@ -1,9 +1,10 @@
+/// <reference types="../types" />
+
 import React, { useImperativeHandle } from 'react';
-import { MapChildProps } from '../types/global';
 import useMapType from './use-map-type';
 
 export interface MapTypeProps
-  extends MapChildProps, AMap.MapType.Options {
+  extends AMap.MapChildProps, AMap.MapType.Options {
     visible?: boolean;
   }
 

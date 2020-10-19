@@ -1,14 +1,15 @@
+/// <reference types="../types" />
+
 import React, { useImperativeHandle } from 'react';
 import useMarker from './use-marker';
-import { MapChildProps, MarkerEventMap, PositionType } from '../types/global';
 
 export type MarkerOptions = AMap.Marker.Options;
 
 export interface MarkerProps extends
-  MapChildProps,
+  AMap.MapChildProps,
   Omit<MarkerOptions, 'position'>,
-  Partial<MarkerEventMap> {
-    position?: PositionType;
+  Partial<AMap.MarkerEventMap> {
+    position?: AMap.PositionType;
     visible?: boolean;
   }
 

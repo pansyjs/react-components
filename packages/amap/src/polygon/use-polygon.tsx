@@ -1,7 +1,9 @@
+/// <reference types="../types" />
+
 import { useState, useEffect } from 'react';
 import { PolygonProps } from './polygon';
 import { useVisible, useEventProperties, useSetProperties } from '../hooks';
-import { Keys, AutoCompleteEventMap } from '../types/global';
+import { Keys } from '../types/global';
 
 export interface UsePolygon extends PolygonProps {}
 
@@ -11,7 +13,7 @@ const properties: string[] = [
 ];
 
 // AMap.Circle.EventMap
-const eventNames: Keys<AutoCompleteEventMap>[] = [
+const eventNames: Keys<AMap.AutoCompleteEventMap>[] = [
 
 ]
 

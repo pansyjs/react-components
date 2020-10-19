@@ -1,14 +1,15 @@
+/// <reference types="../types" />
+
 import React, { useImperativeHandle } from 'react';
-import { MapChildProps, OffsetType } from '../types/global';
 import useOverView from './use-over-view';
 
 export type OverViewOptions = AMap.OverView.Options;
 
 export interface OverViewProps extends
-  MapChildProps,
+  AMap.MapChildProps,
   Omit<OverViewOptions, 'offset'> {
     visible?: boolean;
-    offset?: OffsetType;
+    offset?: AMap.OffsetType;
   }
 
 type OverViewType = React.ForwardRefRenderFunction<AMap.OverView, OverViewProps>;

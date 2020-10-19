@@ -1,9 +1,10 @@
+/// <reference types="../types" />
+
 import React, { useImperativeHandle } from 'react';
 import usePolygon from './use-polygon';
-import { MapChildProps } from '../types/global';
 
 export interface PolygonProps extends
-  MapChildProps,
+  AMap.MapChildProps,
   AMap.Polygon.Options {
     visible?: boolean;
   }

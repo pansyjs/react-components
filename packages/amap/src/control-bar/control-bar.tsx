@@ -1,9 +1,8 @@
 import React, { useImperativeHandle } from 'react';
-import { MapChildProps } from '../types/global';
 import useControlBar from './use-control-bar';
 
 export interface ControlBarProps extends
-  MapChildProps,
+  AMap.MapChildProps,
   AMap.ControlBar.Options {}
 
 type ControlBarType = React.ForwardRefRenderFunction<AMap.ControlBar, ControlBarProps>;

@@ -1,13 +1,14 @@
+/// <reference types="../types" />
+
 import React, { useImperativeHandle } from 'react';
-import { MapChildProps, OffsetType } from '../types/global';
 import useToolBar from './use-tool-bar';
 
 export type ToolBarOptions = AMap.ToolBar.Options;
 
 export interface ToolBarProps
-  extends MapChildProps, Omit<ToolBarOptions, 'offset'> {
+  extends AMap.MapChildProps, Omit<ToolBarOptions, 'offset'> {
     visible?: boolean;
-    offset?: OffsetType;
+    offset?: AMap.OffsetType;
   }
 
 type ToolBarType = React.ForwardRefRenderFunction<AMap.ToolBar, ToolBarProps>;

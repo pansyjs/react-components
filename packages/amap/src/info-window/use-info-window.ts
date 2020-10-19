@@ -1,7 +1,9 @@
+/// <reference types="../types" />
+
 import { useState, useMemo, useEffect } from 'react';
 import { InfoWindowProps } from './info-window';
 import { useEventProperties, useSetProperties } from '../hooks';
-import { Keys, InfoWindowEventMap, PositionType } from '../types/global';
+import { Keys } from '../types/global';
 import { toLnglat } from '../utils';
 
 export interface UseInfoWindow extends InfoWindowProps {};
@@ -13,7 +15,7 @@ const properties = [
 ];
 
 // AMap.InfoWindow.EventMap
-const eventNames: Keys<InfoWindowEventMap>[] = [
+const eventNames: Keys<AMap.InfoWindowEventMap>[] = [
   'onOpen',
   'onClose',
   'onChange'
@@ -24,7 +26,7 @@ const useInfoWindow = (props = {} as UseInfoWindow) => {
   const [isOpen, setIsOpen] = useState(visible);
   const [infoWindow, setInfoWindow] = useState<AMap.InfoWindow>();
 
-  const position = toLnglat(props.position as PositionType);
+  const position = toLnglat(props.position as AMap.LngLat);
 
   useEffect(() => {
     if (!AMap || !map) return;

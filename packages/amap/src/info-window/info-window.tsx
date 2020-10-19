@@ -1,12 +1,13 @@
+/// <reference types="../types" />
+
 import React, { useImperativeHandle } from 'react';
 import useInfoWindow from './use-info-window';
-import { MapChildProps, InfoWindowEventMap, PositionType } from '../types/global';
 
 export interface InfoWindowProps extends
-  MapChildProps,
-  Partial<InfoWindowEventMap>,
+  AMap.MapChildProps,
+  Partial<AMap.InfoWindowEventMap>,
   AMap.InfoWindow.Options {
-    location?: PositionType;
+    location?: AMap.PositionType;
     visible?: boolean;
   }
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { RectangleProps } from './rectangle';
 import { useVisible, useEventProperties, useSetProperties } from '../hooks';
-import { Keys, InfoWindowEventMap } from '../types/global';
+import { Keys } from '../types/global';
 
 export interface UseRectangle extends RectangleProps {};
 
@@ -12,8 +12,7 @@ const properties: string[] = [
   'extData'
 ];
 
-// AMap.InfoWindow.EventMap
-const eventNames: Keys<InfoWindowEventMap>[] = [
+const eventNames: string[] = [
 
 ]
 

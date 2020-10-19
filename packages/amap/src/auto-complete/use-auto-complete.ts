@@ -1,7 +1,9 @@
+/// <reference types="../types" />
+
 import { useState, useEffect } from 'react';
 import { AutoCompleteProps } from './auto-complete';
 import { useEventProperties, useSetProperties } from '../hooks';
-import { Keys, AutoCompleteEventMap } from '../types/global';
+import { Keys } from '../types/global';
 
 export interface UseAutoComplete extends AutoCompleteProps {};
 
@@ -12,7 +14,7 @@ const properties: string[] = [
 ];
 
 // AMap.Autocomplete.EventMap
-const eventNames: Keys<AutoCompleteEventMap>[] = [
+const eventNames: Keys<AMap.AutoCompleteEventMap>[] = [
   'onComplete',
   'onError',
   'onSelect',
