@@ -2,75 +2,75 @@
 
 declare namespace AMap {
   interface MapEventMap {
-    onClick: MapsEvent<'click', Map>;
-    onDblClick: MapsEvent<'dblclick', Map>;
-    onRightClick: MapsEvent<'rightclick', Map>;
-    onRdblclick: MapsEvent<'rdblclick', Map>;
-    onMouseUp: MapsEvent<'mouseup', Map>;
-    onMouseDown: MapsEvent<'mousedown', Map>;
-    onMouseMove: MapsEvent<'mousemove', Map>;
-    onMouseWheel: MapsEvent<'mousewheel', Map>;
-    onMouseOver: MapsEvent<'mouseover', Map>;
-    onMouseOut: MapsEvent<'mouseout', Map>;
-    onTouchStart: MapsEvent<'touchstart', Map>;
-    onTouchMove: MapsEvent<'touchmove', Map>;
-    onTouchEnd: MapsEvent<'touchend', Map>;
-    onContextMenu: MapsEvent<'contextmenu', Map>;
+    onClick: (event: AMap.Map.EventMap['click']) => void;
+    onDblClick: (event: AMap.Map.EventMap['dblclick']) => void;
+    onRightClick: (event: AMap.Map.EventMap['rightclick']) => void;
+    onRdblclick: (event: AMap.Map.EventMap['rdblclick']) => void;
+    onMouseUp: (event: AMap.Map.EventMap['mouseup']) => void;
+    onMouseDown: (event: AMap.Map.EventMap['mousedown']) => void;
+    onMouseMove: (event: AMap.Map.EventMap['mousemove']) => void;
+    onMouseWheel: (event: AMap.Map.EventMap['mousewheel']) => void;
+    onMouseOver: (event: AMap.Map.EventMap['mouseover']) => void;
+    onMouseOut: (event: AMap.Map.EventMap['mouseout']) => void;
+    onTouchStart: (event: AMap.Map.EventMap['touchstart']) => void;
+    onTouchMove: (event: AMap.Map.EventMap['touchmove']) => void;
+    onTouchEnd: (event: AMap.Map.EventMap['touchend']) => void;
+    onContextMenu: (event: AMap.Map.EventMap['contextmenu']) => void;
 
-    onHotspotClick: HotspotEvent<'hotspotclick'>;
-    onHotspotOver: HotspotEvent<'hotspotover'>;
-    onHotspotOut: HotspotEvent<'hotspotout'>;
+    onHotspotClick: (event: AMap.Map.EventMap['hotspotclick']) => void;
+    onHotspotOver: (event: AMap.Map.EventMap['hotspotover']) => void;
+    onHotspotOut: (event: AMap.Map.EventMap['hotspotout']) => void;
 
-    onComplete: Event<'complete'>;
-    onMapMove: Event<'mapmove'>;
-    onMoveStart: Event<'movestart'>;
-    onMoveEnd: Event<'moveend'>;
-    onZoomChange: Event<'zoomchange'>;
-    onZoomStart: Event<'zoomstart'>;
-    onZoomEnd: Event<'zoomend'>;
-    onDragStart: Event<'dragstart'>;
-    onDragging: Event<'dragging'>;
-    onDragEnd: Event<'dragend'>;
-    onResize: Event<'resize'>;
+    onComplete: (event: AMap.Map.EventMap['complete']) => void;
+    onMapMove: (event: AMap.Map.EventMap['mapmove']) => void;
+    onMoveStart: (event: AMap.Map.EventMap['movestart']) => void;
+    onMoveEnd: (event: AMap.Map.EventMap['moveend']) => void;
+    onZoomChange: (event: AMap.Map.EventMap['zoomchange']) => void;
+    onZoomStart: (event: AMap.Map.EventMap['zoomstart']) => void;
+    onZoomEnd: (event: AMap.Map.EventMap['zoomend']) => void;
+    onDragStart: (event: AMap.Map.EventMap['dragstart']) => void;
+    onDragging: (event: AMap.Map.EventMap['dragging']) => void;
+    onDragEnd: (event: AMap.Map.EventMap['dragend']) => void;
+    onResize: (event: AMap.Map.EventMap['resize']) => void;
   }
 
-  interface MarkerEventMap<I = Marker> {
-    onClick: MapsEvent<'click', I>;
-    onDblClick: MapsEvent<'dblclick', I>;
-    onRightClick: MapsEvent<'rightclick', I>;
-    onMouseMove: MapsEvent<'mousemove', I>;
-    onMouseOver: MapsEvent<'mouseover', I>;
-    onMouseOut: MapsEvent<'mouseout', I>;
-    onMouseDown: MapsEvent<'mousedown', I>;
-    onMouseUp: MapsEvent<'mouseup', I>;
-    onDragStart: MapsEvent<'dragstart', I>;
-    onDragging: MapsEvent<'dragging', I>;
-    onDragEnd: MapsEvent<'dragend', I>;
-    onMoving: Event<'moving', { passedPath: LngLat[]; }>;
-    onMoveEnd: Event<'moveend'>;
-    onMoveAlong: Event<'movealong'>;
-    onTouchStart: MapsEvent<'touchstart', I>;
-    onTouchMove: MapsEvent<'touchmove', I>;
-    onTouchEnd: MapsEvent<'touchend', I>;
+  interface MarkerEventMap {
+    onClick: (event: AMap.Marker.EventMap['click']) => void;
+    onDblClick: (event: AMap.Marker.EventMap['dblclick']) => void;
+    onRightClick:(event: AMap.Marker.EventMap['rightclick']) => void;
+    onMouseMove:(event: AMap.Marker.EventMap['mousemove']) => void;
+    onMouseOver: (event: AMap.Marker.EventMap['mouseover']) => void;
+    onMouseOut: (event: AMap.Marker.EventMap['mouseout']) => void;
+    onMouseDown: (event: AMap.Marker.EventMap['mousedown']) => void;
+    onMouseUp: (event: AMap.Marker.EventMap['mouseup']) => void;
+    onDragStart: (event: AMap.Marker.EventMap['dragstart']) => void;
+    onDragging: (event: AMap.Marker.EventMap['dragging']) => void;
+    onDragEnd: (event: AMap.Marker.EventMap['dragend']) => void;
+    onMoving: (event: AMap.Marker.EventMap['moving']) => void;
+    onMoveEnd: (event: AMap.Marker.EventMap['moveend']) => void;
+    onMoveAlong: (event: AMap.Marker.EventMap['movealong']) => void;
+    onTouchStart: (event: AMap.Marker.EventMap['touchstart']) => void;
+    onTouchMove: (event: AMap.Marker.EventMap['touchmove']) => void;
+    onTouchEnd: (event: AMap.Marker.EventMap['touchend']) => void;
   }
 
-  interface InfoWindowEventMap<I = any> {
-    onChange: Event<'change', { target: I }>;
-    onOpen: Event<'open', { target: I }>;
-    onClose: Event<'close', { target: I }>;
+  interface InfoWindowEventMap {
+    onChange: (event: AMap.InfoWindow.EventMap<AMap.InfoWindow>['change']) => void;
+    onOpen: (event: AMap.InfoWindow.EventMap<AMap.InfoWindow>['open']) => void;
+    onClose: (event: AMap.InfoWindow.EventMap<AMap.InfoWindow>['close']) => void;
   }
 
   interface AutoCompleteEventMap {
-    onComplete: Event<'complete', SearchResult | { info: string }>;
-    onError: Event<'error', { info: string }>;
-    onSelect: Event<'select', { tip: Tip }>;
-    onChoose: Event<'choose', { tip: Tip }>;
+    onComplete: (event: AMap.Autocomplete.EventMap['complete']) => void;
+    onError: (event: AMap.Autocomplete.EventMap['error']) => void;
+    onSelect: (event: AMap.Autocomplete.EventMap['select']) => void;
+    onChoose: (event: AMap.Autocomplete.EventMap['choose']) => void;
   }
 
   interface MouseToolEventMap<T extends ShapeOverlay = any> {
     /**
     * 鼠标工具绘制覆盖物结束时触发此事件，instance对象为绘制出来的覆盖物对象。
     */
-   onDraw: (type: string, instance: T) => void;
+   onDraw: (event: { type: string, instance: T }) => void;
  }
 }
