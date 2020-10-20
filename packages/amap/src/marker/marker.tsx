@@ -9,8 +9,12 @@ export interface MarkerProps extends
   AMap.MapChildProps,
   Omit<MarkerOptions, 'position'>,
   Partial<AMap.MarkerEventMap> {
+    className?: string;
     position?: AMap.PositionType;
     visible?: boolean;
+    render?: (extData: any) => React.ReactNode | React.ReactNode;
+    children?: React.ReactNode;
+    onCreated?: (marker: AMap.Marker) => void;
   }
 
 type MarkerType = React.ForwardRefRenderFunction<AMap.Marker, MarkerProps>;

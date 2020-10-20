@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { isFunction, toLnglat, toPixel } from './';
 import { Keys } from '../types/global';
 
-type childFun = (extData: any) => React.ReactNode;
+export type childFun = (extData: any) => React.ReactNode;
 
 export const MarkerAllProps: Keys<AMap.Marker.Options>[] = [
   'position',
