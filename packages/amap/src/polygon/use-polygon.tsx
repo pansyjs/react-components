@@ -3,8 +3,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import { PolygonProps } from './polygon';
 import { useVisible, useEventProperties, useSetProperties } from '../hooks';
-import { Keys } from '../types/global';
 import { toLnglat } from '../utils';
+import { eventNames } from '../utils/overlay'
 
 export interface UsePolygon extends PolygonProps {}
 
@@ -12,8 +12,6 @@ const properties: string[] = [
   'path',
   'extData'
 ];
-
-const eventNames: string[] = []
 
 const usePolygon = (props = {} as UsePolygon) => {
   const { map, visible, ...other } = props;
