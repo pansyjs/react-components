@@ -11,7 +11,7 @@ export default () => {
         {visible ? '隐藏' : '显示'}
       </Button>
       <div style={{ width: '100%', height: '500px' }}>
-        <Map zoom={14}>
+        <Map zoom={12}>
           <Polygon
             visible={visible}
             path={[
