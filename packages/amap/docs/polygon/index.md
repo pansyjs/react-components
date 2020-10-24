@@ -10,6 +10,12 @@ group:
 
 ## Polygon 多边形组件
 
+> 官方文档 [polygon](https://lbs.amap.com/api/javascript-api/reference/overlay#polygon)
+
+## 何时使用
+
+- 需要在地图上一个多边形或者环状多边形时使用；
+
 ## 代码示例
 
 ### 简单使用
