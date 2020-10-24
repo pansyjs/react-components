@@ -71,6 +71,21 @@ declare namespace AMap {
     /**
     * 鼠标工具绘制覆盖物结束时触发此事件，instance对象为绘制出来的覆盖物对象。
     */
-   onDraw: (event: { type: string, instance: T }) => void;
- }
+    onDraw: (event: { type: string, instance: T }) => void;
+  }
+
+  interface PolygonEventMap {
+    onHide: (event: { type: 'hode', target: AMap.Polygon  }) => void;
+    onShow: (event: { type: 'show', target: AMap.Polygon  }) => void;
+    onClick: (event: AMap.Polygon.EventMap['click']) => void;
+    onDblClick: (event: AMap.Polygon.EventMap['dblclick']) => void;
+    onRightClick: (event: AMap.Polygon.EventMap['rightclick']) => void;
+    onMouseOver: (event: AMap.Polygon.EventMap['mouseover']) => void;
+    onMouseOut: (event: AMap.Polygon.EventMap['mouseout']) => void;
+    onMouseDown: (event: AMap.Polygon.EventMap['mousedown']) => void;
+    onMouseUp: (event: AMap.Polygon.EventMap['mouseup']) => void;
+    onTouchStart: (event: AMap.Polygon.EventMap['touchstart']) => void;
+    onTouchMove: (event: AMap.Polygon.EventMap['touchmove']) => void;
+    onTouchEnd: (event: AMap.Polygon.EventMap['touchend']) => void;
+  }
 }
