@@ -7,10 +7,11 @@ export type MarkerOptions = AMap.Marker.Options;
 
 export interface MarkerProps extends
   AMap.MapChildProps,
-  Omit<MarkerOptions, 'position'>,
+  Omit<MarkerOptions, 'position' | 'offset'>,
   Partial<AMap.MarkerEventMap> {
     className?: string;
     position?: AMap.PositionType;
+    offset?: AMap.OffsetType,
     visible?: boolean;
     render?: (extData: any) => React.ReactNode | React.ReactNode;
     children?: React.ReactNode;

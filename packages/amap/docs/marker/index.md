@@ -11,6 +11,8 @@ group:
 
 ##  Marker 点标记组件
 
+> 官方文档 [marker](https://lbs.amap.com/api/javascript-api/reference/overlay#marker)
+
 ## 何时使用
 
 -  显示单个坐标点的时候使用
@@ -36,5 +38,24 @@ group:
 ### 绑定事件
 
 <code src="./demo/demo-05.tsx" />
+
+## API
+
+| 属性 |说明|类型|默认值|amap版本|
+|-----|----|----|----|----|
+|position| 点标记在地图上显示的位置 | `PositionType` | -- | -- |
+|anchor| 设置点标记锚点。 | `string` | `top-left` | `v1.4.13` |
+|offset| 点标记显示位置偏移量 | `string` | `top-left` | `v1.4.13` |
+
+
+**PositionType**
+
+```ts
+type PositionType =
+    AMap.LngLat |
+    [number, number] |
+    { lng: number; lat: number } |
+    { longitude: number, latitude: number };
+```
 
 
