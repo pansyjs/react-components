@@ -1,11 +1,12 @@
-/// <reference types="../types" />
+/// <reference types="../types/index" />
+/// <reference types="../types/event" />
 
 import React, { useImperativeHandle } from 'react';
 import useAutoComplete from './use-auto-complete';
 
 export interface AutoCompleteProps extends
   AMap.MapChildProps,
-  Partial< AMap.AutoCompleteEventMap>,
+  Partial<AMap.AutoCompleteEventMap>,
   AMap.Autocomplete.Options {
     visible?: boolean;
   }
