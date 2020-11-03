@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import Watermark, { WatermarkOptions } from './library';
+import Watermark, { WatermarkOptions } from '@pansy/watermark';
 
 export interface WatermarkComponentProps extends Partial<WatermarkOptions> {
   isBody: Boolean;
