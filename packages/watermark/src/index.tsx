@@ -16,8 +16,7 @@ const WatermarkComponent: React.FC<WatermarkComponentProps> = (params) => {
     }
     watermark.current.update({
       ...rest,
-      container: !isBody ? root.current as HTMLDivElement : undefined,
-      useContainer: true
+      container: !isBody ? root.current as HTMLDivElement : undefined
     });
     watermark.current.render();
 
@@ -29,6 +28,11 @@ const WatermarkComponent: React.FC<WatermarkComponentProps> = (params) => {
   return (
     <div ref={root} />
   )
+}
+
+WatermarkComponent.defaultProps = {
+  isBody: false,
+  monitor: true
 }
 
 export default WatermarkComponent;
