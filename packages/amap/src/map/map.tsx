@@ -1,32 +1,51 @@
+/// <reference types="../types" />
+
 import React, { useEffect, useRef, useImperativeHandle } from 'react';
 import useMap from './use-map';
-import APILoader from '../api-loader';
-import { Options } from '../api-loader/use-api-loader';
-import { MapEventMap, PositionType } from '../types/global';
+import { LoadOption } from '../utils/api-loader';
 
 export type MapOptions = AMap.Map.Options;
+export type RenderProps = (value: { AMap: typeof AMap, map: AMap.Map }) => Element | React.ReactNode;
 
 export interface InternalMapProps extends
   Partial<Omit<MapOptions, 'center'>>,
-  Partial<MapEventMap> {
+  Partial<AMap.MapEventMap> {
     className?: string;
     style?: React.CSSProperties;
-    center?: PositionType;
+    center?: AMap.PositionType;
+    children?: RenderProps | React.ReactNode;
+    onCreated?: (map: AMap.Map) => void;
   }
 
 export interface MapProps extends InternalMapProps {
-  options?: Options;
+  options?: LoadOption;
   loading?: React.ReactNode;
 }
 
-const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, InternalMapProps> = (props, ref) => {
-  const { className, style, children, ...rest } = props;
+const wrapperStyle: React.CSSProperties = {
+  width: '100%',
+  height: '100%',
+  position: 'relative'
+}
+
+const containerStyle: React.CSSProperties = {
+  width: '100%',
+  height: '100%'
+}
+
+const InternalMap: React.ForwardRefRenderFunction<AMap.Map, MapProps> = (props, ref) => {
+  const { className, style, children, loading, ...rest } = props;
   const rootRef = useRef<HTMLDivElement>(null);
-  const { map, setContainer } = useMap({
+  const { map, AMap, loaded, setContainer } = useMap({
     container: rootRef.current as HTMLDivElement,
     ...rest
   });
-  useImperativeHandle(ref, () => ({ ...props, map, AMap, container: rootRef.current }), [map]);
+
+  useImperativeHandle(
+    ref,
+    () => map,
+    [map]
+  );
 
   useEffect(
     () => {
@@ -60,32 +79,24 @@ const InternalMap: React.ForwardRefRenderFunction<{ map: AMap.Map }, InternalMap
   }
 
   return (
-    <>
+    <div style={wrapperStyle}>
       <div
         ref={rootRef}
         className={className}
-        style={{ fontSize: 1, height: '100%', ...style}}
-      />
-      {map && (
+        style={containerStyle}
+      >
+        {
+          loaded && (loading || null)
+        }
+      </div>
+      {(map && AMap) && (
         <>
-         {typeof children === 'function' && children({ map, AMap })}
+         {typeof children === 'function' && (children as RenderProps)({ map, AMap })}
          {renderChildren()}
         </>
       )}
-    </>
+    </div>
   )
 }
 
-const ForwardRefInternalMap = React.forwardRef(InternalMap);
-
-const Map: React.FC<MapProps> = (props) => {
-  const { options = {}, loading, ...rest } = props;
-
-  return (
-    <APILoader {...options} loading={loading}>
-      <ForwardRefInternalMap {...rest} />
-    </APILoader>
-  )
-}
-
-export default Map;
+export default React.forwardRef(InternalMap);

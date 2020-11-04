@@ -13,18 +13,18 @@ function useSetProperties<T, F = {}>(
 ) {
   properties.forEach((propertie) => {
     // zoom => setZoom
-    const setName =`set${propertie.charAt(0).toLowerCase()}${propertie.slice(1)}` as keyof T;
+    const setName =`set${propertie.charAt(0).toUpperCase()}${propertie.slice(1)}` as keyof T;
 
     const [state, setState] = useState(props[propertie]);
 
-      useEffect(() => {
-        if (instance && props[propertie] !== undefined) {
-          if(props[propertie] !== state && instance[setName] && typeof instance[setName] === 'function') {
-            (instance[setName] as any)(props[propertie]);
-            setState(props[propertie]);
-          }
+    useEffect(() => {
+      if (instance && props[propertie] !== undefined) {
+        if(props[propertie] !== state && instance[setName] && typeof instance[setName] === 'function') {
+          (instance[setName] as any)(props[propertie]);
+          setState(props[propertie]);
         }
-      }, [instance, props[propertie]]);
+      }
+    }, [instance, props[propertie]]);
   });
 }
 

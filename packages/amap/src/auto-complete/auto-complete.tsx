@@ -1,12 +1,14 @@
+/// <reference types="../types/index" />
+/// <reference types="../types/event" />
+
 import React, { useImperativeHandle } from 'react';
 import useAutoComplete from './use-auto-complete';
-import { MapChildProps, AutoCompleteEventMap } from '../types/global';
 
 export interface AutoCompleteProps extends
-  MapChildProps,
-  Partial<AutoCompleteEventMap>,
+  AMap.MapChildProps,
+  Partial<AMap.AutoCompleteEventMap>,
   AMap.Autocomplete.Options {
-    visiable?: boolean;
+    visible?: boolean;
   }
 
 type AutoCompleteType = React.ForwardRefRenderFunction<{ autoComplete?: AMap.Autocomplete}, AutoCompleteProps>;

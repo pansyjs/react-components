@@ -1,14 +1,14 @@
-/// <reference types="../types/circle-marker" />
+/// <reference types="../types" />
 
 import React, { useImperativeHandle } from 'react';
 import useCircleMarker from './use-circle-marker';
-import { MapChildProps, InfoWindowEventMap } from '../types/global';
+
+export type CircleMarkerOptions = AMap.CircleMarker.Options;
 
 export interface CircleMarkerProps extends
-  MapChildProps,
-  Partial<InfoWindowEventMap>,
-  AMap.CircleMarker.Options {
-    visiable?: boolean;
+  AMap.MapChildProps,
+  CircleMarkerOptions {
+    visible?: boolean;
   }
 
 type CircleMarkerType = React.ForwardRefRenderFunction<{ circleMarker?: AMap.CircleMarker}, CircleMarkerProps>;
