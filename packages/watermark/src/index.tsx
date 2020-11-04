@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Watermark, { WatermarkOptions } from '@pansy/watermark';
 
 export interface WatermarkComponentProps extends Partial<WatermarkOptions> {
-  isBody: Boolean;
+  isBody?: Boolean;
 }
 
 const WatermarkComponent: React.FC<WatermarkComponentProps> = (params) => {
@@ -32,7 +32,10 @@ const WatermarkComponent: React.FC<WatermarkComponentProps> = (params) => {
 
 WatermarkComponent.defaultProps = {
   isBody: false,
-  monitor: true
+  monitor: true,
+  width: 320,
+  height: 160,
+  mode: 'interval'
 }
 
 export default WatermarkComponent;
