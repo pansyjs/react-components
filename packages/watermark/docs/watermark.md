@@ -14,6 +14,11 @@ group:
 
 为页面添加水印。
 
+**注意**
+
+- `body` 使用 `position: fixed`
+- 其他采用 `position: absolute`, 需保证父组件不能为 `position: static`
+
 ## 何时使用
 
 - 需要给DOM添加水印时，包括但不限图片、视频。
@@ -47,6 +52,10 @@ group:
 ### 整个页面
 
 <code src="../demos/demo-04.tsx" background="#f0f2f5" />
+
+### 绝对定位
+
+<code src="../demos/demo-08.tsx" background="#f0f2f5" />
 
 ## API
 
