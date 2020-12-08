@@ -1,13 +1,11 @@
 <h1 align="center">@pansy/react-watermark</h1>
 
-<h4 align="center">水印组件<h4>
-
-> 基于[@pansy/watermark](https://github.com/pansyjs/watermark)的封装
+<h4 align="center">水印组件, 基于[@pansy/watermark](https://github.com/pansyjs/watermark)的封装<h4>
 
 **注意**
 
 - `body` 使用 `position: fixed`
-- 其他采用 `position: absolute`, 需保证挂载节点的不能为 `position: static`
+- 其他采用 `position: absolute`, 需保证父组件不能为 `position: static`
 
 ## ✨ 特性
 
@@ -28,19 +26,18 @@ yarn add @pansy/react-watermark
 
 ## 🔨 使用
 
-```
+```tsx
 import React from 'react';
 import Watermark from '@pansy/react-watermark';
 
 export default () => {
   return (
-    <Watermark style={{ width: 500, height: '100%' }} text="测试水印">
-      <div>
-        <button>
-          123
-        </button>
-      </div>
-    </Watermark>
+    <div style={{ position: 'relative', width: 500, height: '100%' }}>
+      <Watermark text="测试水印" />
+      <button>
+        123
+      </button>
+    </div>
   )
 }
 ```
