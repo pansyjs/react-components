@@ -4,7 +4,9 @@ import './index.less';
 
 export interface PlayerProps {
   prefixCls?: string;
+  /** 自定义样式类 */
   className?: string;
+  /** 自定义样式 */
   style?: React.CSSProperties;
   // 播放源
   source: string;
@@ -12,6 +14,7 @@ export interface PlayerProps {
   isLive?: boolean;
   // 用于在播放器加载成功前渲染
   loading?: React.ReactNode;
+  /** 播放器配置 */
   options?: Partial<Omit<PlayerConfig, 'source' | 'isLive'>>;
   // aliplayer版本
   version?: string;
@@ -369,4 +372,5 @@ class Player extends React.Component<PlayerProps, PlayerState> {
   }
 }
 
+export * from './types';
 export default Player;

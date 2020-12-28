@@ -30,6 +30,10 @@ export interface PlayerConfig {
   cover: string;
   // 播放内容是否为直播
   isLive: boolean;
+  // flv配置
+  flvOption: {
+    hasAudio: boolean;
+  }
   // 播放器是否自动播放
   autoplay: boolean;
   // 播放器自动循环播放
