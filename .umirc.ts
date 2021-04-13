@@ -40,6 +40,10 @@ export default {
   navs: [
     null,
     {
+      title: 'AMap',
+      path: 'https://react-amap-pansyjs.vercel.app/',
+    },
+    {
       title: 'GitHub',
       path: 'https://github.com/pansyjs/react-components',
     },

@@ -8,15 +8,18 @@
     "start": "dumi dev",
     "build": "father-build",
     "site": "dumi build",
-    "commit": "npx cz",
-    "test": "walrus test"
+    "test": "walrus test",
+    "commit": "commit",
+    "release": "walrus release"
   },
   "devDependencies": {
     "@types/react": "17.0.3",
     "@types/react-dom": "16.9.11",
     "@umijs/plugin-antd": "0.9.1",
     "@walrus/cli": "1.3.4",
+    "@walrus/commit": "1.2.1",
     "@walrus/plugin-test": "1.1.0",
+    "@walrus/plugin-release": "1.12.1",
     "antd": "4.14.0",
     "commitizen": "4.2.3",
     "cz-conventional-changelog": "3.3.0",
