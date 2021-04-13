@@ -22,8 +22,12 @@ const tailPkgList = pkgList
   .map((path) => [join('packages', path, 'docs')])
   .reduce((acc, val) => acc.concat(val), []);
 
+const logo = 'https://cdn.jsdelivr.net/gh/wangxingkang/pictures@latest/imgs/react.svg';
+
 export default {
   title: 'React Components',
+  logo,
+  favicon: logo,
   mode: 'site',
   extraBabelPlugins: [
     [
