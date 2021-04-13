@@ -1,6 +1,6 @@
 {
   "name": "@pansy/react-watermark",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "React watermark component.",
   "main": "lib/index.js",
   "module": "es/index.js",
