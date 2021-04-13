@@ -19,5 +19,5 @@ $ npm i @pansy/react-watermark --save
 包含的组件:
 
 - @pansy/react-aliplayer    
-- @pansy/react-amap
+- @pansy/react-split-screen
 - @pansy/react-watermark
