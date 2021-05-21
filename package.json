@@ -20,7 +20,7 @@
     "@walrus/commit": "1.2.1",
     "@walrus/plugin-test": "1.1.0",
     "@walrus/plugin-release": "1.12.1",
-    "antd": "4.15.2",
+    "antd": "4.15.6",
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
     "dumi": "1.1.16",
