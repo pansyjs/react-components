@@ -23,7 +23,7 @@
     "antd": "4.16.0",
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
-    "dumi": "1.1.16",
+    "dumi": "1.1.23",
     "father-build": "1.19.5",
     "lerna": "3.22.1",
     "react": "17.0.1",
