@@ -3,4 +3,5 @@ declare module '*.less';
 
 interface Window {
   Aliplayer: any;
+  globalThis: Window;
 }

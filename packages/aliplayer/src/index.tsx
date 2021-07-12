@@ -25,6 +25,8 @@ export interface PlayerProps {
   cssLinkTemplate?: string;
   // 播放器JS模板
   scriptSrcTemplate?: string;
+  /** qiankun沙盒模式 */
+  useGlobalThis?: boolean;
   // 播放器视频初始化按钮渲染完毕
   onReady?: () => void;
   // 视频由暂停恢复为播放时触发
@@ -154,6 +156,12 @@ class Player extends React.Component<PlayerProps, PlayerState> {
 
   private insertScriptTag = () => {
     const { scriptSrcTemplate = '', version = '' } = this.props;
+    let document = window.document;
+
+    if (this.props.useGlobalThis && window.globalThis) {
+      document = globalThis.document;
+    }
+
     let playerScriptTag = document.getElementById(this.playerScriptId) as HTMLScriptElement;
 
     if (!playerScriptTag) {
