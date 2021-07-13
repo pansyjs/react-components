@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/pansyjs/react-components/compare/@pansy/react-aliplayer@1.2.1...@pansy/react-aliplayer@1.3.0) (2021-07-13)
+
+
+### Features
+
+* **react-aliplayer:** update default version ([873bec5](https://github.com/pansyjs/react-components/commit/873bec5c19bc60032f248c3c9377625e11bedc8a))
+
+
+
+
+
 ## [1.2.1](https://github.com/pansyjs/react-components/compare/@pansy/react-aliplayer@1.2.0...@pansy/react-aliplayer@1.2.1) (2021-07-13)
 
 
