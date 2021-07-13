@@ -76,7 +76,7 @@ class Player extends React.Component<PlayerProps, PlayerState> {
     hideControlbar: false,
     cssLinkTemplate: '//g.alicdn.com/de/prismplayer/{%version}/skins/default/aliplayer-min.css',
     scriptSrcTemplate: '//g.alicdn.com/de/prismplayer/{%version}/aliplayer-min.js',
-    version: '2.9.4',
+    version: '2.9.7',
     options: {},
     changeSourceMode: 'init'
   };
