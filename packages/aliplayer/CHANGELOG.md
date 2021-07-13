@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/pansyjs/react-components/compare/@pansy/react-aliplayer@1.2.0...@pansy/react-aliplayer@1.2.1) (2021-07-13)
+
+
+### Bug Fixes
+
+* **aliplayer:** 修复乾坤使用问题 ([eadd047](https://github.com/pansyjs/react-components/commit/eadd047ff98e7cdd67d4089ce85e26a25cd71325))
+
+
+
+
+
 # [1.2.0](https://github.com/pansyjs/react-components/compare/@pansy/react-aliplayer@1.1.0...@pansy/react-aliplayer@1.2.0) (2021-07-12)
 
 
