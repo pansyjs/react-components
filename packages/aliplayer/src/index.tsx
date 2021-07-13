@@ -25,8 +25,6 @@ export interface PlayerProps {
   cssLinkTemplate?: string;
   // 播放器JS模板
   scriptSrcTemplate?: string;
-  /** qiankun沙盒模式 */
-  useGlobalThis?: boolean;
   // 播放器视频初始化按钮渲染完毕
   onReady?: () => void;
   // 视频由暂停恢复为播放时触发
@@ -158,10 +156,6 @@ class Player extends React.Component<PlayerProps, PlayerState> {
     const { scriptSrcTemplate = '', version = '' } = this.props;
     let document = window.document;
 
-    if (this.props.useGlobalThis && window.globalThis) {
-      document = globalThis.document;
-    }
-
     let playerScriptTag = document.getElementById(this.playerScriptId) as HTMLScriptElement;
 
     if (!playerScriptTag) {
@@ -250,7 +244,9 @@ class Player extends React.Component<PlayerProps, PlayerState> {
 
     // 销毁播放器
     this.instance && this.instance.dispose();
-    this.instance = new window['Aliplayer'](config);
+    // @ts-ignore
+    const Aliplayer = window['Aliplayer'] || window.proxy.Aliplayer;
+    this.instance = new Aliplayer(config);
     this.instance?.setVolume(0);
     this.initEvents();
   }
