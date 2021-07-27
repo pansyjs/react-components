@@ -13,7 +13,7 @@
     "release": "walrus release"
   },
   "devDependencies": {
-    "@types/react": "17.0.14",
+    "@types/react": "17.0.15",
     "@types/react-dom": "16.9.13",
     "@umijs/plugin-antd": "0.10.0",
     "@walrus/cli": "1.3.4",
