@@ -52,6 +52,9 @@ export default {
       path: 'https://github.com/pansyjs/react-components',
     },
   ],
+  headScripts: [
+    { src: '/liveplayer-element.min.js' },
+  ],
   hash: true,
   dynamicImport: {}
 };
