@@ -2,19 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { getVideoWindowStyle } from './utils';
 import { SplitScreenAmount } from './types';
 
-export interface SplitScreenProps {
+export interface SplitScreenProps<D = any[]> {
   /** 额外的样式类 */
   className?: string;
   /** 额外的样式 */
   style?: React.CSSProperties;
   /** 当前的分屏数量 */
   amount: SplitScreenAmount;
+  /** 需要用到的数据池 */
+  list?: D[];
   /** 分屏的间隔 */
   gutter?: number;
   /** 分屏的背景色 */
   background?: string;
   /** 业务相关 */
-  children: (index: number) => React.ReactNode;
+  children: (index: number, data: D) => React.ReactNode;
 }
 
 const containerStyle: React.CSSProperties = {
@@ -23,14 +25,15 @@ const containerStyle: React.CSSProperties = {
   height: '100%',
 }
 
-export const SplitScreen: React.FC<SplitScreenProps> = ({
+export function SplitScreen<D = any[]>({
   className,
   style,
   amount = 4,
+  list = [],
   gutter = 8,
-  background = '#000',
-  children
-}) => {
+  background = "#000",
+  children,
+}: SplitScreenProps<D>) {
   const [items, setItems] = useState<any[]>(new Array(amount).fill(undefined));
 
   useEffect(
@@ -44,7 +47,7 @@ export const SplitScreen: React.FC<SplitScreenProps> = ({
 
   const renderChildren = (index: number) => {
     if (typeof children === 'function') {
-      return children(index);
+      return children(index, list[index]);
     }
 
     return null

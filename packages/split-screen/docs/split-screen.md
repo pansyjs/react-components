@@ -26,6 +26,10 @@ group:
 
 <code src="./demo/demo-02.tsx" background="#f0f2f5" />
 
+### 场景二
+
+<code src="./demo/demo-03.tsx" background="#f0f2f5" />
+
 ## API
 
 | 参数          | 说明          | 类型                 | 默认值 | 版本 |
