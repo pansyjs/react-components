@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import classNames from 'classnames'
 import { Select, Space, Input, Button, message } from 'antd';
 import SplitScreen from '@pansy/react-split-screen';
+import Player from '@pansy/react-aliplayer';
 import type { SplitScreenAmount } from '@pansy/react-split-screen/es/types';
 import styles from './demo-03.less';
 
@@ -23,17 +24,8 @@ const PlayerItem: React.FC<PlayerItemProps> = ({
   const player = useMemo(
     () => {
       return (
-        // @ts-ignore
-        <live-player
-          video-url={url}
-          live="true"
-          aspect='fullscreen'
-        // @ts-ignore
-        ></live-player>
+        <Player source={url} isLive options={{ autoplay: true }} />
       )
-      // return (
-      //   <Player source={url} isLive options={{ autoplay: true }} />
-      // )
     },
     [url]
   );
@@ -87,6 +79,7 @@ export default () => {
     setVideos(prev => {
       const next = [...prev];
       next[currentWindowIndex] = inputValue;
+      console.log(next);
       return next;
     });
   }
