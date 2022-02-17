@@ -62,12 +62,19 @@ export const ResponsiveCard: React.FC<ResponsiveCardProps> = ({
       return children(adaptiveConfig);
     }
 
+    /** 优化体验 */
+    if (adaptiveConfig.width === 0) {
+      return null;
+    }
+
+    const { width = defaultWidth, gutter, span } = adaptiveConfig;
+
     return React.Children.map(children, (child: any, index: number) => {
       const style = {
-        width: adaptiveConfig.width,
+        width,
         marginRight:
-          (index + 1) % adaptiveConfig.span != 0
-            ? adaptiveConfig.gutter
+          (index + 1) % span != 0
+            ? gutter
             : 0,
       }
 
