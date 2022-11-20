@@ -24,7 +24,7 @@
     "cz-conventional-changelog": "3.3.0",
     "dumi": "1.1.38",
     "father-build": "1.20.4",
-    "lerna": "4.0.0",
+    "lerna": "6.0.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "typescript": "4.5.5"
