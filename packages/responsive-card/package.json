@@ -13,7 +13,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@pansy/use-size": "^0.2.0"
+    "@pansy/use-size": "^0.3.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
