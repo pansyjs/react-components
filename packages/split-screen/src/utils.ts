@@ -1,4 +1,4 @@
-import React from 'react';
+import type { CSSProperties } from 'react';
 
 interface Config {
   rows: number;
@@ -30,7 +30,7 @@ export const getVideoWindowStyle = (
   amount: number,
   index: number
 ) => {
-  let style: React.CSSProperties = {};
+  let style: CSSProperties = {};
 
   const sqrt = Math.sqrt(amount);
 

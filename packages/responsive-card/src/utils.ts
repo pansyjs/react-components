@@ -1,4 +1,4 @@
-import isNumber from 'lodash/isNumber';
+import { isNumber } from '@pansy/shared';
 
 export interface Opts {
   /** 默认宽度 */

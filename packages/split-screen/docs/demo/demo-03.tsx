@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import classNames from 'classnames'
+import { classNames } from '@pansy/shared'
 import { Select, Space, Input, Button, message } from 'antd';
 import SplitScreen from '@pansy/react-split-screen';
 import Player from '@pansy/react-aliplayer';

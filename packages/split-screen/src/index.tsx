@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getVideoWindowStyle } from './utils';
-import { SplitScreenAmount } from './types';
+import type { SplitScreenAmount } from './types';
 
 export interface SplitScreenProps<D = any[]> {
   /** 额外的样式类 */

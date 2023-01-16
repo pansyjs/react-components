@@ -29,16 +29,6 @@ export default {
   logo,
   favicon: logo,
   mode: 'site',
-  extraBabelPlugins: [
-    [
-      'import',
-      {
-        libraryName: 'antd',
-        libraryDirectory: 'es',
-        style: true,
-      },
-    ],
-  ],
   alias,
   resolve: { includes: [...tailPkgList, 'docs'] },
   navs: [
