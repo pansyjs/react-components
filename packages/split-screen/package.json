@@ -9,6 +9,9 @@
     "es",
     "lib"
   ],
+  "scripts": {
+    "build": "redbud build"
+  },
   "peerDependencies": {
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0"
