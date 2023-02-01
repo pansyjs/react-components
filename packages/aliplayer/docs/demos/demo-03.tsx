@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import Player from '@pansy/react-aliplayer';
+import React from 'react';
+import { Player } from '@pansy/react-aliplayer';
 
-const Example: FC = () => {
+export default () => {
   return (
     <div style={{ height: 500 }}>
       <Player
@@ -15,5 +15,3 @@ const Example: FC = () => {
     </div>
   );
 };
-
-export default Example;

@@ -20,19 +20,19 @@ group:
 
 ### 简单使用
 
-<code src="../demos/demo-01.tsx" />
+<code src="./demos/demo-01.tsx" />
 
 ### 隐藏控制栏
 
-<code src="../demos/demo-02.tsx" />
+<code src="./demos/demo-02.tsx" />
 
 ### 直播
 
-<code src="../demos/demo-03.tsx" />
+<code src="./demos/demo-03.tsx" />
 
 ### 手动控制
 
-<code src="../demos/demo-04.tsx" />
+<code src="./demos/demo-04.tsx" />
 
 ## API
 
