@@ -1,6 +1,6 @@
 {
   "name": "@pansy/react-split-screen",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "license": "MIT",
   "main": "lib/index.js",
   "module": "es/index.js",

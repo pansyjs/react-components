@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/pansyjs/react-components/compare/@pansy/react-responsive-card@0.2.0...@pansy/react-responsive-card@0.2.1) (2023-02-02)
+
+**Note:** Version bump only for package @pansy/react-responsive-card
+
+
+
+
+
 # [0.2.0](https://github.com/pansyjs/react-components/compare/@pansy/react-responsive-card@0.1.2...@pansy/react-responsive-card@0.2.0) (2022-02-17)
 
 
