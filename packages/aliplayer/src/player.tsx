@@ -35,8 +35,8 @@ const InternalPlayer: React.ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
     loading,
     source,
     isLive,
-    // version = '2.13.4',
-    version = '2.9.22',
+    version = '2.13.4',
+    // version = '2.9.22',
     cssLinkTemplate = `${tempPrefix}skins/default/aliplayer-min.css`,
     scriptSrcTemplate =  `${tempPrefix}aliplayer-min.js`,
   } = props;
