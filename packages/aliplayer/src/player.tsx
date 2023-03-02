@@ -156,18 +156,19 @@ const InternalPlayer: React.ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
 
     playerInstance.current = new Aliplayer(config);
     playerInstance.current!.setVolume(0);
-    initEvents();
+    initEvents(playerInstance.current);
   }
 
-  const initEvents = () => {
+  const initEvents = (player?: PlayerInstance) => {
+    if (!player) return;
     eventNames.forEach((eventName) => {
       let propsEventName = eventName;
       if (!eventName.startsWith('on')) {
-        propsEventName = `on${eventName.charAt(0).toUpperCase()}${eventName.slice(0, eventName.length)}`
+        propsEventName = `on${eventName.charAt(0).toUpperCase()}${eventName.slice(1, eventName.length)}`
       }
 
       if (propsEventName in props && props[propsEventName]) {
-        playerInstance.current!.on(propsEventName, props[propsEventName]);
+        player.on(eventName, props[propsEventName]);
       }
     })
   }
