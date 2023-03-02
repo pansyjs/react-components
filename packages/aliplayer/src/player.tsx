@@ -41,6 +41,7 @@ const InternalPlayer: React.ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
     scriptSrcTemplate =  `${tempPrefix}aliplayer-min.js`,
   } = props;
   const playerInstance = useRef<PlayerInstance>();
+  const playerId = useRef(`aliplayer-${Math.floor(Math.random() * 1000000)}`);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(
@@ -73,8 +74,6 @@ const InternalPlayer: React.ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
     },
     [playerInstance.current]
   )
-
-  const playerId = `aliplayer-${Math.floor(Math.random() * 1000000)}`;
 
   const classes = [
     prefixCls,
@@ -132,7 +131,7 @@ const InternalPlayer: React.ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
     const config: Partial<PlayerConfig>  = {
       ...options,
       useH5Prism: true,
-      id: playerId,
+      id: playerId.current,
       source,
       isLive: !!isLive
     };
@@ -174,7 +173,7 @@ const InternalPlayer: React.ForwardRefRenderFunction<PlayerRef, PlayerProps> = (
   }
 
   return (
-    <div className={classes} style={style} id={playerId}>
+    <div className={classes} style={style} id={playerId.current}>
       {isLoading ? loading : null}
     </div>
   )
