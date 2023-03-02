@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/pansyjs/react-components/compare/@pansy/react-aliplayer@2.1.0...@pansy/react-aliplayer@2.1.1) (2023-03-02)
+
+
+### Bug Fixes
+
+* 修复播放器绑定事件逻辑错误 ([d7c0112](https://github.com/pansyjs/react-components/commit/d7c01126d8964dd851d0ca11ce12c9790080569a))
+* 修复偶发 aliplayer 报 没有为播放器指定容器 ([56eab0c](https://github.com/pansyjs/react-components/commit/56eab0c0a1ed4d2f5d30f75f65af3bee0e8faa25))
+
+
+
+
+
 # [2.1.0](https://github.com/pansyjs/react-components/compare/@pansy/react-aliplayer@1.3.0...@pansy/react-aliplayer@2.1.0) (2023-02-02)
 
 
