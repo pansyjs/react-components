@@ -224,6 +224,8 @@ class Player extends React.Component<PlayerProps, PlayerState> {
       isLive
     } = props;
 
+    if (!props.source || !document.getElementById(this.playerId)) return;
+
     const config: Partial<PlayerConfig>  = {
       ...options,
       useH5Prism: true,
