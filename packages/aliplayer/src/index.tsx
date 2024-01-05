@@ -4,6 +4,8 @@ import './index.less';
 
 export interface PlayerProps {
   prefixCls?: string;
+  /** 指定 aliplayerid */
+  id?: string;
   /** 自定义样式类 */
   className?: string;
   /** 自定义样式 */
@@ -83,7 +85,7 @@ class Player extends React.Component<PlayerProps, PlayerState> {
 
   constructor(props: PlayerProps) {
     super(props);
-    this.playerId = `aliplayer-${Math.floor(Math.random() * 1000000)}`;
+    this.playerId = props?.id || `aliplayer-${Math.floor(Math.random() * 1000000)}`;
     this.playerScriptId = 'ali-player-js';
     this.playerLinkId = 'ali-player-css';
     this.state = {
