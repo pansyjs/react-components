@@ -24,7 +24,7 @@
     "commitizen": "4.3.0",
     "cz-conventional-changelog": "3.3.0",
     "dumi": "1.1.38",
-    "redbud": "1.5.0",
+    "redbud": "1.6.0",
     "lerna": "6.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
